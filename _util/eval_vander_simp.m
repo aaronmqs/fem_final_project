@@ -48,7 +48,7 @@ for j = 1:nv
             dV(:, j, s) = Usj * x(s, :) .^ (Usj - 1);
             one2dim_but_s = setdiff(1:ndim, s);
             for m = one2dim_but_s
-                dV(:, j, s) = dV(:, j, s) .* x(m, :).^Upsilon(m, j);
+                dV(:, j, s) = dV(:, j, s) .* (x(m, :).^Upsilon(m, j))';
             end
         end
     end

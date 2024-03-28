@@ -47,17 +47,12 @@ end
 
 % Code me!
 Vhat = eval_vander_simp(porder, xk);
-[Vtilde, dVtilde] = eval_vander_simp(porder, x);
+[Vtilde, Wtilde] = eval_vander_simp(porder, x);
 Q(:, 1, :) = Vhat' \ Vtilde';
 
-% for j = 2:ndim+1
-%     for l = 1:nv
-%         
-%     end
-% end
-
-% Checks
-
+for j = 1:ndim
+    Q(:, 1 + j, :) = Vhat' \ Wtilde(:, :, j)';
+end
 
 end
 

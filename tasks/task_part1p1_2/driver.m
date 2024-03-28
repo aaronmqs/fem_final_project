@@ -22,5 +22,5 @@ for i = 1:nf
     grid on
     axis([-0.1 1.1 -0.1 1.1])
 
-    fname = sprintf('C:/Users/aaron/PhD/2024_1_AME60541/project/fem_final_project/tasks/Part1p1/face%d', i); saveas(gcf, [fname, '.png']); close all;
+%     fname = sprintf('C:/Users/aaron/PhD/2024_1_AME60541/project/fem_final_project/tasks/Part1p1/face%d', i); saveas(gcf, [fname, '.png']); close all;
 end
