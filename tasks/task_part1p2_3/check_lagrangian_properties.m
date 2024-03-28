@@ -13,13 +13,13 @@ function check_lagrangian_properties(ndim, porder, x)
 xk = create_nodes_bndy_refdom_simp(ndim, porder); 
 if size(x, 1) ~= size(xk, 1); error("Incorrect dimension."); end
 Q = eval_interp_simp_lagrange(xk, x);
-[ndim, nx] = size(x);
+nx = size(x, 2);
 tol = 1e-8;
-for j = 1:nx
-    if abs(sum(Q(:, 1, j)) - 1) > tol; error("The sum of the basis functions in a point must be 1."); end
-    for k = 1:ndim
-        if abs(sum(Q(:, 1 + k, j))) > tol; error("The sum of the derivatives of the basis functions in a point must be 0."); end
-    end
+if ~isempty(setdiff(find(abs(sum(squeeze(Q(:, 1, :)), 1) - 1) > tol), 1:nx))
+    error("The sum of all basis functions should be equal to 1 for any given point.")
+end
+if ~isempty(setdiff(find((abs(sum(squeeze(Q(:, 2, :)), 1)) > tol)), 1:nx))
+    error("The sum of the gradients of all basis functions should be equal to a zero vector for any given point.")
 end
 
 % If this point is reached, the test was successful.
