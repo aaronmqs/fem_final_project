@@ -12,8 +12,8 @@ Testing a change from a forked repository.
     - [x] 2
   - [ ]  Part 1.2
     - [x] 1
-    - [ ] 2
-    - [ ] 3
+    - [x] 2
+    - [x] 3
     - [ ] 4
   - [ ] Part 1.3
     - [ ] 1
