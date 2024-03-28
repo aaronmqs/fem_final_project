@@ -5,3 +5,6 @@ addpath('_mesh/_distmesh/');
 addpath('_mesh/_meshes');
 addpath('_util/');
 addpath('_wrappers/');
+
+% Other folders
+addpath(genpath('tasks/'));
