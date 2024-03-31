@@ -10,7 +10,7 @@ Testing a change from a forked repository.
   - [x] Part 1.1
     - [x] 1
     - [x] 2
-  - [ ]  Part 1.2
+  - [x]  Part 1.2
     - [x] 1
     - [x] 2
     - [x] 3
