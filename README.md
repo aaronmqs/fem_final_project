@@ -2,7 +2,17 @@
 Repository with all shared codes for the final project of Finite Element Methods.
 The notation used in the code follows what's described in the [Project](https://github.com/aaronmqs/fem_final_project/blob/main/project.pdf) and in the [notation](https://github.com/aaronmqs/fem_final_project/blob/main/notation.m).
 
-Testing a change from a forked repository.
+# Questions
+
+- [ ] The number of quadrature nodes for simplices: see Task 5 for Part 1.3.
+      
+      -- check_moments_refdom("simp", 2, 1)
+      Whe running this function, I need more than ceil((porder + 1) / 2) quadrature points per dimension in order to get accurate moments for the simplex. Why?
+      
+- [ ] See Task 6 for Part 1.3.
+      
+      -- driver
+      The errors don't decrease even with the increase of quadrature points. Is it because the added qpoints are accumulating in one place?
 
 # What was done so far:
 
