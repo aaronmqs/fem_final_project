@@ -9,10 +9,15 @@ The notation used in the code follows what's described in the [Project](https://
       -- check_moments_refdom("simp", 2, 1)
       Whe running this function, I need more than ceil((porder + 1) / 2) quadrature points per dimension in order to get accurate moments for the simplex. Why?
       
-- [ ] See Task 6 for Part 1.3.
+- [ ] See Task 6 for Part 1.3 (simplex).
       
       -- driver
       The errors don't decrease even with the increase of quadrature points. Is it because the added qpoints are accumulating in one place?
+
+- [ ] See Task 6 for Part 1.3 (hcube).
+
+      -- driver
+      Same issue: more qpoints than expected.
 
 # What was done so far:
 
