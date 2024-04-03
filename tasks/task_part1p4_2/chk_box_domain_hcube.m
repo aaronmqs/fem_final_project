@@ -29,7 +29,7 @@ transf_data = create_transf_data_ndim(lfcnsp, msh.xcg, msh.e2vcg, msh.e2bnd);
 % Checks
 tol = 1e-8;
 if abs(v - 1) > tol; error("Incorrect volume."); end
-if ~isempty(find(abs(c - 0.5) > 1e-8, 1)); error("Incorrect centroid."); end
+if ~isempty(find(abs(c - 0.5) > tol, 1)); error("Incorrect centroid."); end
 if abs(sa - 2 * ndim) > tol; error("Incorrect surface area."); end
 
 % If this point is reached, the test was successful.
