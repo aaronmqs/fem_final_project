@@ -1,4 +1,4 @@
-function chk_sphere_domain_hcube(ndim, nel)
+function [varargout] = chk_sphere_domain(etype, ndim, nel, porder)
 % This function checks if the volume, the centroid and the surface area of
 % a ndim-dimensional sphere domain which mesh is formed by hypercube elements is
 % evaluated correctly.
@@ -6,8 +6,6 @@ function chk_sphere_domain_hcube(ndim, nel)
 if ndim ~= 2 && ndim ~= 3; error("Not implmented."); end
 
 % Create mesh
-etype = 'hcube';
-porder = 2;
 c = zeros(ndim, 1); r = 1;
 msh = create_mesh_hsphere(etype, c, r, nel, porder);
 
@@ -28,16 +26,29 @@ transf_data = create_transf_data_ndim(lfcnsp, msh.xcg, msh.e2vcg, msh.e2bnd);
 [v, c, sa] = compute_domain_metrics(transf_data, qrule);
 
 % Checks
-tol = 1e-8;
-if ndim == 2
-    if abs(v - pi * r^2) > tol; error("Incorrect volume."); end
-    if abs(sa - 2 * pi * r) > tol; error("Incorrect surface area."); end
+if nargout > 0
+    if ndim == 2
+        ev = abs(v - pi * r^2);
+        esa = abs(sa - 4 * pi * r^2);
+    else
+        ev = abs(v - 4 * pi * r^3 / 3);
+        esa = abs(sa - 4 * pi * r^2);
+    end
+    ec = norm(c);
+    varargout = [ev, esa, ec];
 else
-    if abs(v - 4 * pi * r^3 / 3) > tol; error("Incorrect volume."); end
-    if abs(sa - 4 * pi * r^2) > tol; error("Incorrect surface area."); end
-end    
+    tol = 1e-8;
+    if ndim == 2
+        if abs(v - pi * r^2) > tol; error("Incorrect volume."); end
+        if abs(sa - 2 * pi * r) > tol; error("Incorrect surface area."); end
+    else
+        if abs(v - 4 * pi * r^3 / 3) > tol; error("Incorrect volume."); end
+        if abs(sa - 4 * pi * r^2) > tol; error("Incorrect surface area."); end
+    end    
 
-if ~isempty(find(abs(c) > tol, 1)); error("Incorrect centroid."); end
+    if ~isempty(find(abs(c) > tol, 1)); error("Incorrect centroid."); end
+end
+
 
 % If this point is reached, the test was successful.
 fprintf("Test for hypercube passed.\n\n")
