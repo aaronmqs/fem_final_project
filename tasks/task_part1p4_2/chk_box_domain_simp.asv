@@ -1,17 +1,16 @@
 function chk_box_domain_simp(ndim)
 % This function checks if the volume, the centroid and the surface area of
 % a ndim-dimensional domain which mesh is formed by simplicial elements is
-% evaluated correctly. (Only 1d and 2d)
-
-if ndim ~= 1 && ndim ~= 2; error("Not implemented."); end
+% evaluated correctly.
 
 % Create mesh
 etype = 'simp';
 porder = 1;
 lims = [zeros(ndim, 1) ones(ndim, 1)];
 nel = 2^ndim * ones(ndim, 1);
-if ndim == 2; msh = create_mesh_hcube('simp', lims, nel, porder); end
-if ndim == 1; msh = create_mesh_hcube('hcube', lims, nel, porder); end
+msh_quad = create_mesh_hcube('hcube', lims, nel, porder);
+[e2vcg_tri, e2bnd_tri] = split_quad_mesh_into_tri_mesh(msh_quad.e2vcg, msh_quad.e2bnd); % TODO: Not working for 3d
+msh = create_mesh_strct(etype, msh_quad.xcg, e2vcg_tri, e2bnd_tri);
 
 % Visualize mesh
 if ndim == 1 || ndim == 2
