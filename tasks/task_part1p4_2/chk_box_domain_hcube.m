@@ -20,7 +20,7 @@ else
 end
 
 % Compute metrics (volume, centroid, surface area)
-nquad_per_dim = ceil((porder + 1) / 2) * 3; % TODO: Why so many qpoints necessary?
+nquad_per_dim = ceil((porder + 1) / 2); % Only this number of qpoints is needed, since the elements are all perfect hypercubes.
 qrule = create_qrule_gaussleg(etype, ndim, nquad_per_dim);
 lfcnsp = create_polysp_nodal(etype, ndim, porder, qrule.zq, qrule.rq);
 transf_data = create_transf_data_ndim(lfcnsp, msh.xcg, msh.e2vcg, msh.e2bnd);

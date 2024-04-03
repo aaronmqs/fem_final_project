@@ -8,7 +8,7 @@ tol = 1e-4;
 etype = 'simp';
 ndim = 2;
 porder = 2;
-nquad_per_dim = ceil((porder + 1) / 2) + 1; % TODO: Why so many qpoints necessary?
+nquad_per_dim = ceil((porder + 1) / 2) + 1; % More points necessary than "expected" because the integrand "suffers" two different transformations: one from the idealized hypercube to the idealized simplex and another one from the idealized simplex to the physical one.
 
 % Quadrature rules for ndim-dimensional simplex (\Omega_\square) and for
 % (ndim-1)-dimensional simplex (\Gamma_\square)
