@@ -19,6 +19,8 @@ The notation used in the code follows what's described in the [Project](https://
       -- driver
       Same issue: more qpoints than expected.
 
+- [ ] Simplicial mesh from hcube mesh (see Task 2 for Part 1.4.)
+      
 # What was done so far:
 
 - [x] Part 1
@@ -39,7 +41,7 @@ The notation used in the code follows what's described in the [Project](https://
     - [x] 6
   - [ ] Part 1.4
     - [x] 1
-    - [ ] 2
+    - [x] 2
     - [ ] 3
     - [ ] 4 [DUE TO 04/05] (changed to 04/08 in class)
 - [ ] Part 2
