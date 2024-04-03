@@ -8,7 +8,7 @@ tol = 1e-4;
 etype = 'simp';
 ndim = 2;
 porder = 2;
-nquad_per_dim = ceil((porder + 1) / 2) + 1;
+nquad_per_dim = ceil((porder + 1) / 2) + 1; % TODO: Why so many qpoints necessary?
 
 % Quadrature rules for ndim-dimensional simplex (\Omega_\square) and for
 % (ndim-1)-dimensional simplex (\Gamma_\square)

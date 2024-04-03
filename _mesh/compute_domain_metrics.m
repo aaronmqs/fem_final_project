@@ -24,5 +24,40 @@ c = zeros(ndim, 1);
 v = 0.0; sa = 0.0;
 
 % Code me!
+[wq, zq, wqf] = deal(qrule.wq, qrule.zq, qrule.wqf);
+v_fcn = ones(size(wq))';
+s_fcn = ones(size(wqf))';
+
+for e = 1:nelem
+    % Volume
+    transf_data_e = transf_data(e);
+    [detG_e, sigf_e, e2bnd_e] = deal(transf_data_e.detG, transf_data_e.sigf, transf_data_e.e2bnd);
+    ve = v_fcn * (wq .* detG_e);
+    v = v + ve;
+
+    % Centroid
+    c_fcn = zq;
+    ce = c_fcn * (wq .* detG_e);
+    c = c + ce;
+
+    % Surface area
+    sa_e = 0;
+    for f = 1:nf
+        if ~isnan(e2bnd_e(f))
+            sa_e = sa_e + s_fcn * (wqf .* sigf_e(:, f));
+        end
+    end
+    sa = sa + sa_e;
+end
+
+c = c / v;
 
 end
+
+
+
+
+
+
+
+

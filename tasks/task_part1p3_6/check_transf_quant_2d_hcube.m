@@ -4,14 +4,14 @@
 clear; clc; close all;
 tol = 1e-4;
 
-%% Test for simplex
+%% Test for hcube
 etype = 'hcube';
 ndim = 2;
 porder = 2;
-nquad_per_dim = ceil((porder + 1) / 2) * 3;
+nquad_per_dim = ceil((porder + 1) / 2) * 3; % TODO: Why so many qpoints necessary?
 
-% Quadrature rules for ndim-dimensional simplex (\Omega_\square) and for
-% (ndim-1)-dimensional simplex (\Gamma_\square)
+% Quadrature rules for ndim-dimensional hcube (\Omega_\square) and for
+% (ndim-1)-dimensional hcube (\Gamma_\square)
 qrule = create_qrule_gaussleg(etype, ndim, nquad_per_dim);
 [wq, zq, wqf, rq] = deal(qrule.wq, qrule.zq, qrule.wqf, qrule.rq);
 
