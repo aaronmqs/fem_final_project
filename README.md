@@ -23,7 +23,7 @@ The notation used in the code follows what's described in the [Project](https://
   - [ ] Part 1.4
     - [x] 1
     - [x] 2
-    - [ ] 3
+    - [x] 3
     - [ ] 4 [DUE TO 04/05] (changed to 04/08 in class)
 - [ ] Part 2
   - [ ] Part 2.1
