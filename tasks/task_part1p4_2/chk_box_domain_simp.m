@@ -9,7 +9,7 @@ porder = 1;
 lims = [zeros(ndim, 1) ones(ndim, 1)];
 nel = 2^ndim * ones(ndim, 1);
 msh_quad = create_mesh_hcube('hcube', lims, nel, porder);
-[e2vcg_tri, e2bnd_tri] = split_quad_mesh_into_tri_mesh(msh_quad.e2vcg, msh_quad.e2bnd);
+[e2vcg_tri, e2bnd_tri] = split_quad_mesh_into_tri_mesh(msh_quad.e2vcg, msh_quad.e2bnd); % TODO: Not working for 3d
 msh = create_mesh_strct(etype, msh_quad.xcg, e2vcg_tri, e2bnd_tri);
 
 % Visualize mesh
