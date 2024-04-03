@@ -1,4 +1,4 @@
-function check_domain_metrics_hcube(ndim)
+function chk_box_domain_hcube(ndim)
 % This function checks if the volume, the centroid and the surface area of
 % a ndim-dimensional domain which mesh is formed by hypercube elements is
 % evaluated correctly.

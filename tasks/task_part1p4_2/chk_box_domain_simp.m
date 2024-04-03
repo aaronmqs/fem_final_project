@@ -1,4 +1,4 @@
-function check_domain_metrics_simp(ndim)
+function chk_box_domain_simp(ndim)
 % This function checks if the volume, the centroid and the surface area of
 % a ndim-dimensional domain which mesh is formed by simplicial elements is
 % evaluated correctly.
