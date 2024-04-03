@@ -9,8 +9,6 @@ porder = 1;
 lims = [zeros(ndim, 1) ones(ndim, 1)];
 nel = 2^ndim * ones(ndim, 1);
 msh = create_mesh_hcube(etype, lims, nel, porder);
-% c = [0 0 0]'; r = 1;
-% msh = create_mesh_hsphere(etype, c, r, nel, porder);
 
 % Visualize mesh
 if ndim == 1 || ndim == 2
