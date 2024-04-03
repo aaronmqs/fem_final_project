@@ -24,19 +24,19 @@ c = zeros(ndim, 1);
 v = 0.0; sa = 0.0;
 
 % Code me!
-[wq, zq, wqf] = deal(qrule.wq, qrule.zq, qrule.wqf);
+[wq, wqf] = deal(qrule.wq, qrule.wqf);
 v_fcn = ones(size(wq))';
 s_fcn = ones(size(wqf))';
 
 for e = 1:nelem
     % Volume
     transf_data_e = transf_data(e);
-    [detG_e, sigf_e, e2bnd_e] = deal(transf_data_e.detG, transf_data_e.sigf, transf_data_e.e2bnd);
+    [detG_e, sigf_e, e2bnd_e, xq_e] = deal(transf_data_e.detG, transf_data_e.sigf, transf_data_e.e2bnd, transf_data_e.xq);
     ve = v_fcn * (wq .* detG_e);
     v = v + ve;
 
     % Centroid
-    c_fcn = zq;
+    c_fcn = xq_e;
     ce = c_fcn * (wq .* detG_e);
     c = c + ce;
 
