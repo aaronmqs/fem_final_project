@@ -1,4 +1,4 @@
-function [varargout] = chk_sphere_domain(etype, ndim, nel, porder)
+function [varargout] = chk_sphere_domain(etype, ndim, nel, porder, pltit)
 % This function checks if the volume, the centroid and the surface area of
 % a ndim-dimensional sphere domain which mesh is formed by hypercube elements is
 % evaluated correctly.
@@ -10,12 +10,14 @@ c = zeros(ndim, 1); r = 1;
 msh = create_mesh_hsphere(etype, c, r, nel, porder);
 
 % Visualize mesh
-if ndim == 1 || ndim == 2
-    visualize_fem([], msh);
-elseif ndim == 3
-    visualize_fem3d([], msh);
-else
-    warning("Visualization not implemented.")
+if pltit
+    if ndim == 1 || ndim == 2
+        visualize_fem([], msh);
+    elseif ndim == 3
+        visualize_fem3d([], msh);
+    else
+        warning("Visualization not implemented.")
+    end
 end
 
 % Compute metrics (volume, centroid, surface area)
@@ -29,13 +31,13 @@ transf_data = create_transf_data_ndim(lfcnsp, msh.xcg, msh.e2vcg, msh.e2bnd);
 if nargout > 0
     if ndim == 2
         ev = abs(v - pi * r^2);
-        esa = abs(sa - 4 * pi * r^2);
+        esa = abs(sa - 2 * pi * r);
     else
         ev = abs(v - 4 * pi * r^3 / 3);
         esa = abs(sa - 4 * pi * r^2);
     end
     ec = norm(c);
-    varargout = [ev, esa, ec];
+    varargout = {ev, esa, ec};
 else
     tol = 1e-8;
     if ndim == 2
@@ -47,10 +49,9 @@ else
     end    
 
     if ~isempty(find(abs(c) > tol, 1)); error("Incorrect centroid."); end
+
+    % If this point is reached, the test was successful.
+    fprintf("Test for hypercube passed.\n\n")
 end
-
-
-% If this point is reached, the test was successful.
-fprintf("Test for hypercube passed.\n\n")
 
 end
