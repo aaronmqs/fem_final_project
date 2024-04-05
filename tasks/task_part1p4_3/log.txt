@@ -1,0 +1,614 @@
+
+Test for 2-dimensional mesh of 2 hcube elements (per dimension) of order 1: 
+
+Volume error: 3.131655e-01. 
+Surface area error: 1.602504e-01. 
+Centroid error: 5.551115e-17. 
+
+Test for 2-dimensional mesh of 4 hcube elements (per dimension) of order 1: 
+
+Volume error: 8.162778e-02. 
+Surface area error: 4.106106e-02. 
+Centroid error: 1.869943e-17. 
+
+Test for 2-dimensional mesh of 6 hcube elements (per dimension) of order 1: 
+
+Volume error: 3.666672e-02. 
+Surface area error: 1.838342e-02. 
+Centroid error: 1.430971e-17. 
+
+Test for 2-dimensional mesh of 8 hcube elements (per dimension) of order 1: 
+
+Volume error: 2.071125e-02. 
+Surface area error: 1.037163e-02. 
+Centroid error: 2.912750e-17. 
+
+Test for 2-dimensional mesh of 10 hcube elements (per dimension) of order 1: 
+
+Volume error: 1.328225e-02. 
+Surface area error: 6.647720e-03. 
+Centroid error: 1.176323e-17. 
+
+Test for 2-dimensional mesh of 12 hcube elements (per dimension) of order 1: 
+
+Volume error: 9.234318e-03. 
+Surface area error: 4.620349e-03. 
+Centroid error: 3.040020e-17. 
+
+Test for 2-dimensional mesh of 14 hcube elements (per dimension) of order 1: 
+
+Volume error: 6.789154e-03. 
+Surface area error: 3.396302e-03. 
+Centroid error: 9.837991e-18. 
+
+Test for 2-dimensional mesh of 16 hcube elements (per dimension) of order 1: 
+
+Volume error: 5.200339e-03. 
+Surface area error: 2.601182e-03. 
+Centroid error: 3.844409e-18. 
+
+Test for 2-dimensional mesh of 2 hcube elements (per dimension) of order 2: 
+
+Volume error: 4.448531e-03. 
+Surface area error: 2.137311e-03. 
+Centroid error: 3.956679e-17. 
+
+Test for 2-dimensional mesh of 4 hcube elements (per dimension) of order 2: 
+
+Volume error: 4.057337e-04. 
+Surface area error: 1.203932e-04. 
+Centroid error: 1.592935e-17. 
+
+Test for 2-dimensional mesh of 6 hcube elements (per dimension) of order 2: 
+
+Volume error: 9.018504e-05. 
+Surface area error: 2.241543e-05. 
+Centroid error: 3.076477e-17. 
+
+Test for 2-dimensional mesh of 8 hcube elements (per dimension) of order 2: 
+
+Volume error: 3.003695e-05. 
+Surface area error: 6.878063e-06. 
+Centroid error: 3.937586e-17. 
+
+Test for 2-dimensional mesh of 10 hcube elements (per dimension) of order 2: 
+
+Volume error: 1.263442e-05. 
+Surface area error: 2.769227e-06. 
+Centroid error: 2.444613e-17. 
+
+Test for 2-dimensional mesh of 12 hcube elements (per dimension) of order 2: 
+
+Volume error: 6.187646e-06. 
+Surface area error: 1.321649e-06. 
+Centroid error: 9.460719e-17. 
+
+Test for 2-dimensional mesh of 14 hcube elements (per dimension) of order 2: 
+
+Volume error: 3.372463e-06. 
+Surface area error: 7.086274e-07. 
+Centroid error: 1.799887e-17. 
+
+Test for 2-dimensional mesh of 16 hcube elements (per dimension) of order 2: 
+
+Volume error: 1.989704e-06. 
+Surface area error: 4.135008e-07. 
+Centroid error: 5.403487e-17. 
+
+Test for 2-dimensional mesh of 2 hcube elements (per dimension) of order 3: 
+
+Volume error: 2.104366e-03. 
+Surface area error: 1.896988e-03. 
+Centroid error: 1.275038e-16. 
+
+Test for 2-dimensional mesh of 4 hcube elements (per dimension) of order 3: 
+
+Volume error: 1.851354e-04. 
+Surface area error: 1.765838e-04. 
+Centroid error: 1.725166e-16. 
+
+Test for 2-dimensional mesh of 6 hcube elements (per dimension) of order 3: 
+
+Volume error: 4.065492e-05. 
+Surface area error: 3.960246e-05. 
+Centroid error: 3.133620e-16. 
+
+Test for 2-dimensional mesh of 8 hcube elements (per dimension) of order 3: 
+
+Volume error: 1.346715e-05. 
+Surface area error: 1.324808e-05. 
+Centroid error: 3.974920e-16. 
+
+Test for 2-dimensional mesh of 10 hcube elements (per dimension) of order 3: 
+
+Volume error: 5.648513e-06. 
+Surface area error: 5.586008e-06. 
+Centroid error: 5.495751e-16. 
+
+Test for 2-dimensional mesh of 12 hcube elements (per dimension) of order 3: 
+
+Volume error: 2.761709e-06. 
+Surface area error: 2.739689e-06. 
+Centroid error: 6.588082e-16. 
+
+Test for 2-dimensional mesh of 14 hcube elements (per dimension) of order 3: 
+
+Volume error: 1.503627e-06. 
+Surface area error: 1.494606e-06. 
+Centroid error: 6.682260e-16. 
+
+Test for 2-dimensional mesh of 16 hcube elements (per dimension) of order 3: 
+
+Volume error: 8.864897e-07. 
+Surface area error: 8.823510e-07. 
+Centroid error: 8.559466e-16. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 2 hcube elements (per dimension) of order 4: 
+
+Volume error: 1.362139e-04. 
+Surface area error: 1.238013e-04. 
+Centroid error: 2.262930e-16. 
+
+Test for 2-dimensional mesh of 4 hcube elements (per dimension) of order 4: 
+
+Volume error: 4.990501e-06. 
+Surface area error: 4.737671e-06. 
+Centroid error: 4.332700e-16. 
+
+Test for 2-dimensional mesh of 6 hcube elements (per dimension) of order 4: 
+
+Volume error: 5.878197e-07. 
+Surface area error: 5.701844e-07. 
+Centroid error: 7.243420e-16. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 8 hcube elements (per dimension) of order 4: 
+
+Volume error: 1.198876e-07. 
+Surface area error: 1.175544e-07. 
+Centroid error: 9.335758e-16. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 10 hcube elements (per dimension) of order 4: 
+
+Volume error: 3.383058e-08. 
+Surface area error: 3.337338e-08. 
+Centroid error: 1.342491e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 12 hcube elements (per dimension) of order 4: 
+
+Volume error: 1.183978e-08. 
+Surface area error: 1.172286e-08. 
+Centroid error: 1.441094e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 14 hcube elements (per dimension) of order 4: 
+
+Volume error: 4.829894e-09. 
+Surface area error: 4.793647e-09. 
+Centroid error: 1.823570e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 16 hcube elements (per dimension) of order 4: 
+
+Volume error: 2.209548e-09. 
+Surface area error: 2.196554e-09. 
+Centroid error: 2.080446e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 3-dimensional mesh of 2 hcube elements (per dimension) of order 1: 
+
+Volume error: 9.784468e-01. 
+Surface area error: 1.526077e+00. 
+Centroid error: 2.593702e-17. 
+
+Test for 3-dimensional mesh of 4 hcube elements (per dimension) of order 1: 
+
+Volume error: 2.725053e-01. 
+Surface area error: 4.116578e-01. 
+Centroid error: 8.824853e-17. 
+
+Test for 3-dimensional mesh of 6 hcube elements (per dimension) of order 1: 
+
+Volume error: 1.237130e-01. 
+Surface area error: 1.857303e-01. 
+Centroid error: 3.998564e-17. 
+
+Test for 3-dimensional mesh of 8 hcube elements (per dimension) of order 1: 
+
+Volume error: 7.011980e-02. 
+Surface area error: 1.050439e-01. 
+Centroid error: 2.730442e-17. 
+
+Test for 3-dimensional mesh of 10 hcube elements (per dimension) of order 1: 
+
+Volume error: 4.503670e-02. 
+Surface area error: 6.740091e-02. 
+Centroid error: 1.245794e-17. 
+
+Test for 3-dimensional mesh of 12 hcube elements (per dimension) of order 1: 
+
+Volume error: 3.133640e-02. 
+Surface area error: 4.687221e-02. 
+Centroid error: 5.769802e-18. 
+
+Test for 3-dimensional mesh of 14 hcube elements (per dimension) of order 1: 
+
+Volume error: 2.304979e-02. 
+Surface area error: 3.446620e-02. 
+Centroid error: 1.327130e-17. 
+
+Test for 3-dimensional mesh of 16 hcube elements (per dimension) of order 1: 
+
+Volume error: 1.766103e-02. 
+Surface area error: 2.640290e-02. 
+Centroid error: 4.256001e-17. 
+
+Test for 3-dimensional mesh of 2 hcube elements (per dimension) of order 2: 
+
+Volume error: 9.395580e-03. 
+Surface area error: 1.234065e-02. 
+Centroid error: 5.229169e-17. 
+
+Test for 3-dimensional mesh of 4 hcube elements (per dimension) of order 2: 
+
+Volume error: 7.187526e-04. 
+Surface area error: 6.956192e-04. 
+Centroid error: 6.360723e-17. 
+
+Test for 3-dimensional mesh of 6 hcube elements (per dimension) of order 2: 
+
+Volume error: 1.519417e-04. 
+Surface area error: 1.331324e-04. 
+Centroid error: 2.917368e-17. 
+
+Test for 3-dimensional mesh of 8 hcube elements (per dimension) of order 2: 
+
+Volume error: 4.954502e-05. 
+Surface area error: 4.161628e-05. 
+Centroid error: 5.759851e-17. 
+
+Test for 3-dimensional mesh of 10 hcube elements (per dimension) of order 2: 
+
+Volume error: 2.061550e-05. 
+Surface area error: 1.694994e-05. 
+Centroid error: 2.233872e-17. 
+
+Test for 3-dimensional mesh of 12 hcube elements (per dimension) of order 2: 
+
+Volume error: 1.003347e-05. 
+Surface area error: 8.149410e-06. 
+Centroid error: 1.827175e-17. 
+
+Test for 3-dimensional mesh of 14 hcube elements (per dimension) of order 2: 
+
+Volume error: 5.447204e-06. 
+Surface area error: 4.390940e-06. 
+Centroid error: 3.258443e-17. 
+
+Test for 3-dimensional mesh of 16 hcube elements (per dimension) of order 2: 
+
+Volume error: 3.205408e-06. 
+Surface area error: 2.570928e-06. 
+Centroid error: 3.881245e-17. 
+
+Test for 3-dimensional mesh of 2 hcube elements (per dimension) of order 3: 
+
+Volume error: 5.920582e-03. 
+Surface area error: 1.130287e-02. 
+Centroid error: 2.933927e-16. 
+
+Test for 3-dimensional mesh of 4 hcube elements (per dimension) of order 3: 
+
+Volume error: 4.989953e-04. 
+Surface area error: 9.779920e-04. 
+Centroid error: 2.563194e-16. 
+
+Test for 3-dimensional mesh of 6 hcube elements (per dimension) of order 3: 
+
+Volume error: 1.075259e-04. 
+Surface area error: 2.127032e-04. 
+Centroid error: 3.330180e-16. 
+
+Test for 3-dimensional mesh of 8 hcube elements (per dimension) of order 3: 
+
+Volume error: 3.529053e-05. 
+Surface area error: 7.010390e-05. 
+Centroid error: 4.712367e-16. 
+
+Test for 3-dimensional mesh of 10 hcube elements (per dimension) of order 3: 
+
+Volume error: 1.472671e-05. 
+Surface area error: 2.931917e-05. 
+Centroid error: 6.413474e-16. 
+
+Test for 3-dimensional mesh of 12 hcube elements (per dimension) of order 3: 
+
+Volume error: 7.178282e-06. 
+Surface area error: 1.430968e-05. 
+Centroid error: 6.508626e-16. 
+
+Test for 3-dimensional mesh of 14 hcube elements (per dimension) of order 3: 
+
+Volume error: 3.900573e-06. 
+Surface area error: 7.782047e-06. 
+Centroid error: 8.497506e-16. 
+
+Test for 3-dimensional mesh of 16 hcube elements (per dimension) of order 3: 
+
+Volume error: 2.296587e-06. 
+Surface area error: 4.584447e-06. 
+Centroid error: 9.505409e-16. 
+
+Test for 3-dimensional mesh of 2 hcube elements (per dimension) of order 4: 
+
+Volume error: 2.509517e-04. 
+Surface area error: 4.738137e-04. 
+Centroid error: 2.658065e-16. 
+
+Test for 3-dimensional mesh of 4 hcube elements (per dimension) of order 4: 
+
+Volume error: 7.756054e-06. 
+Surface area error: 1.499223e-05. 
+Centroid error: 6.929269e-16. 
+
+Test for 3-dimensional mesh of 6 hcube elements (per dimension) of order 4: 
+
+Volume error: 8.642059e-07. 
+Surface area error: 1.693910e-06. 
+Centroid error: 9.470239e-16. 
+
+Test for 3-dimensional mesh of 8 hcube elements (per dimension) of order 4: 
+
+Volume error: 1.717787e-07. 
+Surface area error: 3.391174e-07. 
+Centroid error: 1.263917e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 3-dimensional mesh of 10 hcube elements (per dimension) of order 4: 
+
+Volume error: 4.779809e-08. 
+Surface area error: 9.474072e-08. 
+Centroid error: 1.688173e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 3-dimensional mesh of 12 hcube elements (per dimension) of order 4: 
+
+Volume error: 1.658714e-08. 
+Surface area error: 3.295794e-08. 
+Centroid error: 1.957095e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 3-dimensional mesh of 14 hcube elements (per dimension) of order 4: 
+
+Volume error: 6.729636e-09. 
+Surface area error: 1.339271e-08. 
+Centroid error: 2.450618e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 3-dimensional mesh of 16 hcube elements (per dimension) of order 4: 
+
+Volume error: 3.067168e-09. 
+Surface area error: 6.110564e-09. 
+Centroid error: 2.592332e-15. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 4 simp elements (per dimension) of order 1: 
+
+Volume error: 3.131655e-01. 
+Surface area error: 1.602504e-01. 
+Centroid error: 0. 
+
+Test for 2-dimensional mesh of 8 simp elements (per dimension) of order 1: 
+
+Volume error: 8.162778e-02. 
+Surface area error: 4.106106e-02. 
+Centroid error: 2.337428e-17. 
+
+Test for 2-dimensional mesh of 12 simp elements (per dimension) of order 1: 
+
+Volume error: 3.666672e-02. 
+Surface area error: 1.838342e-02. 
+Centroid error: 3.446326e-17. 
+
+Test for 2-dimensional mesh of 16 simp elements (per dimension) of order 1: 
+
+Volume error: 2.071125e-02. 
+Surface area error: 1.037163e-02. 
+Centroid error: 1.007060e-17. 
+
+Test for 2-dimensional mesh of 20 simp elements (per dimension) of order 1: 
+
+Volume error: 1.328225e-02. 
+Surface area error: 6.647720e-03. 
+Centroid error: 1.748346e-17. 
+
+Test for 2-dimensional mesh of 24 simp elements (per dimension) of order 1: 
+
+Volume error: 9.234318e-03. 
+Surface area error: 4.620349e-03. 
+Centroid error: 7.244950e-18. 
+
+Test for 2-dimensional mesh of 28 simp elements (per dimension) of order 1: 
+
+Volume error: 6.789154e-03. 
+Surface area error: 3.396302e-03. 
+Centroid error: 4.457298e-18. 
+
+Test for 2-dimensional mesh of 32 simp elements (per dimension) of order 1: 
+
+Volume error: 5.200339e-03. 
+Surface area error: 2.601182e-03. 
+Centroid error: 1.854854e-17. 
+
+Test for 2-dimensional mesh of 4 simp elements (per dimension) of order 2: 
+
+Volume error: 4.448531e-03. 
+Surface area error: 2.137311e-03. 
+Centroid error: 0. 
+
+Test for 2-dimensional mesh of 8 simp elements (per dimension) of order 2: 
+
+Volume error: 4.057337e-04. 
+Surface area error: 1.203932e-04. 
+Centroid error: 2.220021e-17. 
+
+Test for 2-dimensional mesh of 12 simp elements (per dimension) of order 2: 
+
+Volume error: 9.018504e-05. 
+Surface area error: 2.241543e-05. 
+Centroid error: 1.770473e-17. 
+
+Test for 2-dimensional mesh of 16 simp elements (per dimension) of order 2: 
+
+Volume error: 3.003695e-05. 
+Surface area error: 6.878063e-06. 
+Centroid error: 2.942296e-17. 
+
+Test for 2-dimensional mesh of 20 simp elements (per dimension) of order 2: 
+
+Volume error: 1.263442e-05. 
+Surface area error: 2.769227e-06. 
+Centroid error: 1.240644e-17. 
+
+Test for 2-dimensional mesh of 24 simp elements (per dimension) of order 2: 
+
+Volume error: 6.187646e-06. 
+Surface area error: 1.321649e-06. 
+Centroid error: 7.516810e-18. 
+
+Test for 2-dimensional mesh of 28 simp elements (per dimension) of order 2: 
+
+Volume error: 3.372463e-06. 
+Surface area error: 7.086274e-07. 
+Centroid error: 3.577771e-17. 
+
+Test for 2-dimensional mesh of 32 simp elements (per dimension) of order 2: 
+
+Volume error: 1.989704e-06. 
+Surface area error: 4.135008e-07. 
+Centroid error: 4.247128e-18. 
+
+Test for 2-dimensional mesh of 4 simp elements (per dimension) of order 3: 
+
+Volume error: 2.104366e-03. 
+Surface area error: 1.896988e-03. 
+Centroid error: 8.840796e-18. 
+
+Test for 2-dimensional mesh of 8 simp elements (per dimension) of order 3: 
+
+Volume error: 1.851354e-04. 
+Surface area error: 1.765838e-04. 
+Centroid error: 1.767079e-17. 
+
+Test for 2-dimensional mesh of 12 simp elements (per dimension) of order 3: 
+
+Volume error: 4.065492e-05. 
+Surface area error: 3.960246e-05. 
+Centroid error: 6.626241e-18. 
+
+Test for 2-dimensional mesh of 16 simp elements (per dimension) of order 3: 
+
+Volume error: 1.346715e-05. 
+Surface area error: 1.324808e-05. 
+Centroid error: 3.812556e-17. 
+
+Test for 2-dimensional mesh of 20 simp elements (per dimension) of order 3: 
+
+Volume error: 5.648513e-06. 
+Surface area error: 5.586008e-06. 
+Centroid error: 2.114616e-17. 
+
+Test for 2-dimensional mesh of 24 simp elements (per dimension) of order 3: 
+
+Volume error: 2.761709e-06. 
+Surface area error: 2.739689e-06. 
+Centroid error: 3.442508e-17. 
+
+Test for 2-dimensional mesh of 28 simp elements (per dimension) of order 3: 
+
+Volume error: 1.503627e-06. 
+Surface area error: 1.494606e-06. 
+Centroid error: 4.408873e-17. 
+
+Test for 2-dimensional mesh of 32 simp elements (per dimension) of order 3: 
+
+Volume error: 8.864897e-07. 
+Surface area error: 8.823510e-07. 
+Centroid error: 5.187103e-17. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 4 simp elements (per dimension) of order 4: 
+
+Volume error: 1.362139e-04. 
+Surface area error: 1.238013e-04. 
+Centroid error: 1.975624e-17. 
+
+Test for 2-dimensional mesh of 8 simp elements (per dimension) of order 4: 
+
+Volume error: 4.990501e-06. 
+Surface area error: 4.737671e-06. 
+Centroid error: 6.984592e-18. 
+
+Test for 2-dimensional mesh of 12 simp elements (per dimension) of order 4: 
+
+Volume error: 5.878197e-07. 
+Surface area error: 5.701844e-07. 
+Centroid error: 1.060703e-17. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 16 simp elements (per dimension) of order 4: 
+
+Volume error: 1.198876e-07. 
+Surface area error: 1.175544e-07. 
+Centroid error: 6.130189e-18. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 20 simp elements (per dimension) of order 4: 
+
+Volume error: 3.383058e-08. 
+Surface area error: 3.337339e-08. 
+Centroid error: 1.542772e-17. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 24 simp elements (per dimension) of order 4: 
+
+Volume error: 1.183978e-08. 
+Surface area error: 1.172286e-08. 
+Centroid error: 3.184158e-17. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 28 simp elements (per dimension) of order 4: 
+
+Volume error: 4.829900e-09. 
+Surface area error: 4.793649e-09. 
+Centroid error: 4.599714e-18. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
+
+Test for 2-dimensional mesh of 32 simp elements (per dimension) of order 4: 
+
+Volume error: 2.209553e-09. 
+Surface area error: 2.196555e-09. 
+Centroid error: 1.273389e-17. 
+
+This number of elements/polynomial order are enough to evaluate the integrals for this mesh. 
