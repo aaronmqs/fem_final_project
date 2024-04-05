@@ -25,5 +25,5 @@ msh_dragon = load_mesh('dragon', etype, 0, porder);
 [vd, cd, sad] = measure_domain(msh_dragon, porder, ndim3, etype);
 
 % Skultp10kv domain
-msh_skultp10kv = load_mesh('skultp10kv', etype, 0, porder);
+msh_skultp10kv = load_mesh('sculpt10kv', etype, 0, porder);
 [vs, cs, sas] = measure_domain(msh_skultp10kv, porder, ndim3, etype);

@@ -14,7 +14,7 @@ visualize_fem([], msh);
 if ndim == 2
     scatter(c(1), c(2), 'filled', 'MarkerFaceColor','k')
 elseif ndim == 3
-    scatter(c(1), c(2), c(3), 'filled', 'MarkerFaceColor','k')
+    scatter3(c(1), c(2), c(3), 'filled', 'MarkerFaceColor','k')
 end
 
 end
