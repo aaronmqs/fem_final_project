@@ -30,4 +30,9 @@ end
 % If this point is reached, the test was successful.
 fprintf("Test passed.\n\n")
 
+% Plots for 1d case
+if ndim == 1
+    eval_interp_onedim_lagrange_pdeg(xk, porder);
+end
+
 end
