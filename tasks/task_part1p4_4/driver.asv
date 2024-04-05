@@ -1,0 +1,29 @@
+clear; clc; close all;
+
+porder = 1; etype = 'simp';
+
+% 2d meshes
+ndim2 = 2; 
+
+% Batman domain
+msh_batman = load_mesh('batman0', etype, 0, porder);
+[vb, cb, sab] = measure_domain(msh_batman, porder, ndim2, etype);
+
+% ND domain
+msh_nd = load_mesh('nd0', etype, 0, porder);
+[vnd, cnd, sand] = measure_domain(msh_batman, porder, ndim2, etype);
+
+% 3d meshes
+ndim3 = 3;
+
+% Cow domain
+msh_cow = load_mesh('cow', etype, 0, porder);
+[vc, cc, sac] = measure_domain(msh_batman, porder, ndim3, etype);
+
+% Dragon domain
+msh_dragon = load_mesh('dragon', etype, 0, porder);
+[vd, cd, sad] = measure_domain(msh_batman, porder, ndim3, etype);
+
+% Skultp10kv domain
+msh_skultp10kv = load_mesh('skultp10kv', etype, 0, porder);
+[vs, cs, sas] = measure_domain(msh_batman, porder, ndim3, etype);
