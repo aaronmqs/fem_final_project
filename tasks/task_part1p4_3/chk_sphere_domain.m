@@ -1,6 +1,6 @@
 function [varargout] = chk_sphere_domain(etype, ndim, nel, porder, pltit)
 % This function checks if the volume, the centroid and the surface area of
-% a ndim-dimensional sphere domain which mesh is formed by hypercube elements is
+% a ndim-dimensional sphere domain which mesh is formed by hypercube or simplex elements is
 % evaluated correctly.
 
 if ndim ~= 2 && ndim ~= 3; error("Not implmented."); end
