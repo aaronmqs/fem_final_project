@@ -8,12 +8,11 @@ function lfcnsp = check_moments_refdom(etype, ndim, porder)
 % even if it's not optimal (a smaller number of points could possibly be
 % used).
 if strcmp(etype, "hcube")
-    nquad_per_dim = ceil((porder + 1) / 2);
+    nquad_per_dim = 1;
 elseif strcmp(etype, "simp")
     % It was necessary to use one more quadrature point for simplices.
     % Check case: check_moments_refdom("simp", 2, 1)
-    % It should be co * wq = [1/6, 1/6], but it's not.
-    nquad_per_dim = ceil((porder + 1) / 2) + 1;
+    nquad_per_dim = 2;
 end
 
 % Quadrature rules for ndim-dimensional simplex (\Omega_\square) and for
