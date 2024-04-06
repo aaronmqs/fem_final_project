@@ -8,7 +8,7 @@ tol = 1e-4;
 etype = 'hcube';
 ndim = 2;
 porder = 2;
-nquad_per_dim = ceil((porder + 1) / 2) * 3; % It was necessary more points than "expected" because the hypercube is transformed.
+nquad_per_dim = 6; % It was necessary more points than "expected" because the hypercube is transformed.
 
 % Quadrature rules for ndim-dimensional hcube (\Omega_\square) and for
 % (ndim-1)-dimensional hcube (\Gamma_\square)
