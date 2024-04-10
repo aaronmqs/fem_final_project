@@ -35,6 +35,20 @@ x = x0; [R, dR] = fcn(x);
 
 % Newton iterations
 % Code me! (Hwk 5)
+for k = 1:maxit
+    % Code me!
+    r_nrm(k) = norm(R, "inf");
+    dx =  - inv(dR) * R;
+    dx_nrm(k) = norm(dx);
+    if r_nrm(k) < tol
+        r_nrm = r_nrm(1:k);
+        dx_nrm = dx_nrm(1:k);
+        info = struct('succ', true, 'nit', k-1, 'r_nrm', r_nrm, 'dx_nrm', dx_nrm); 
+        return
+    end
+    x = x + dx;
+    [R, dR] = fcn(x);
+end
 
 % In event of no convergence, setup convergence structure
 info = struct('succ', false, 'nit', maxit, 'r_nrm', r_nrm, 'dx_nrm', dx_nrm);
