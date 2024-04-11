@@ -31,27 +31,25 @@ function [S, dSdU, dSdQ, F, dFdU, dFdQ] = eval_pde0_srcflux(U, Q, pars)
 %   S, dSdU, dSdQ, F, dFdU, dFdQ : See notation.m
 
 % Define information regarding size of the system
-% neqn = 1; nvar = 1;
+neqn = 1; nvar = 1;
 
 % Extract information from input
-% ndim = numel(Q);
+ndim = numel(Q);
 xsq = pars(1);
 
 % Preallocate
-% S = zeros(neqn, 1);
-% dSdU = zeros(neqn, nvar);
-% dSdQ = zeros(neqn, nvar, ndim);
-% 
-% F = zeros(neqn, ndim);
-% dFdU = zeros(neqn, ndim, nvar);
-% dFdQ = zeros(neqn, ndim, nvar, ndim);
+S = zeros(neqn, 1);
+dSdU = zeros(neqn, nvar);
+dSdQ = zeros(neqn, nvar, ndim);
+
+F = zeros(neqn, ndim);
+dFdU = zeros(neqn, ndim, nvar);
+dFdQ = zeros(neqn, ndim, nvar, ndim);
 
 % Code me!
-S = U - xsq;
-dSdU = 1;
-dSdQ = 0;
-F = -Q;
-dFdU = 0;
-dFdQ = -1;
+S(:) = U - xsq;
+dSdU(:, :) = 1;
+F(:, :) = - Q;
+dFdQ(:, :, :, :) = -1;
 
 end

@@ -49,5 +49,8 @@ dFdU = zeros(neqn, ndim, nvar);
 dFdQ = zeros(neqn, ndim, nvar, ndim);
 
 % Code me!
+S(:, :) = f;
+F(:, :) = - k * Q';
+dFdQ(:, :, :, :) = - k;
 
 end
