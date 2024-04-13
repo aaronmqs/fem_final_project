@@ -36,7 +36,7 @@ u = U; q = Q;
 ndim = size(u, 1)-1;
 
 % Define information regarding size of the system
-neqn = ndim+1; ncomp = ndim+1;
+neqn = ndim+1; nvar = ndim+1;
 
 % Extract parameters, primary variables, and gradient
 rho = pars(1);
@@ -54,5 +54,31 @@ dFdU = zeros(neqn, ndim, nvar);
 dFdQ = zeros(neqn, ndim, nvar, ndim);
 
 % Code me!
+S(:, :) = [- rho * dv * v; - trace(dv)];
+F(1:ndim, :) = - rho * nu * dv + p * eye(ndim);
+dFdU(1:ndim, 1:ndim, nvar) = eye(ndim);
+dSdU(1:ndim, :) = [- rho * dv, zeros(ndim, 1)];
+
+for i = 1:ndim
+    for k = 1:ndim
+        for r = 1:ndim
+            dSdQ(i, k, r) = - rho * v(r) * (i == k);
+            for j = 1:ndim
+                dFdQ(i, j, k, r) = - rho * nu * (k == i) * (r == j);
+            end
+        end
+    end
+end
+dSdQ(neqn, 1:ndim, :) = - eye(ndim);
 
 end
+
+
+
+
+
+
+
+
+
+
