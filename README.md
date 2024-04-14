@@ -37,7 +37,7 @@ The notation used in the code follows what's described in the [Project](https://
     - [x] 1
     - [x] 2
 - [ ] Part 3
-  - [ ] Part 3.1
+  - [x] Part 3.1
   - [ ] Part 3.2 [DUE TO 04/19]
 - [ ] Part 4
     - [ ] 1
