@@ -26,7 +26,7 @@ for i = 1:nv
         end
         for l = 1:nqf
             for f = 1:nf
-                Tvf(dof, :, k, l, f) = Qvf(i, k, l, f);
+                Tvf(dof, :, k, l, f) = Qvf(i, k, l, f) * eye(nvar);
             end
         end
     end
