@@ -25,17 +25,17 @@ The notation used in the code follows what's described in the [Project](https://
     - [x] 2
     - [x] 3
     - [x] 4 [DUE TO 04/05] (changed to 04/08 in class)
-- [ ] Part 2
+- [x] Part 2
   - [x] Part 2.1
   - [x] Part 2.2
     - [x] 1
     - [x] 2
-  - [ ] Part 2.3
-    - [ ] 1
-    - [ ] 2
-  - [ ] Part 2.4 
-    - [ ] 1
-    - [ ] 2
+  - [x] Part 2.3
+    - [x] 1
+    - [x] 2
+  - [x] Part 2.4 
+    - [x] 1
+    - [x] 2
 - [ ] Part 3
   - [ ] Part 3.1
   - [ ] Part 3.2 [DUE TO 04/19]
