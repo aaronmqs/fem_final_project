@@ -20,16 +20,33 @@ ndim = size(Qv, 2)-1;
 % Code me!
 for i = 1:nv
     dof = (i - 1) * nvar : i * (nvar + 1) - 1;
-    for k = 1:ndim + 1
-        for l = 1:nq
-            Tv(dof, :, k, l) = Qv(i, k, l) * eye(nvar);
-        end
-        for l = 1:nqf
-            for f = 1:nf
-                Tvf(dof, :, k, l, f) = Qvf(i, k, l, f) * eye(nvar);
-            end
-        end
-    end
+    Tvf(dof, :, :, :, :) = kron(Qvf(i, :, :, :), eye(nvar));
+    Tv(dof, :, :, :) = kron(Qv(i, :, :), eye(nvar));
 end
 
+% for i = 1:nv
+%     dof = (i - 1) * nvar : i * (nvar + 1) - 1;
+%     for k = 1:ndim + 1
+%         for l = 1:nq
+%             Tv(dof, :, k, l) = Qv(i, k, l) * eye(nvar);
+%         end
+%         for l = 1:nqf
+%             for f = 1:nf
+%                 Tvf(dof, :, k, l, f) = Qvf(i, k, l, f) * eye(nvar);
+%             end
+%         end
+%     end
+% end
+
 end
+
+
+
+
+
+
+
+
+
+
+
