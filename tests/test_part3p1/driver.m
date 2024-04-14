@@ -1,0 +1,29 @@
+clear; clc; close all;
+
+%% Test 1:
+c = [0 0]'; r = 1; porder = 2; etype = 'simp'; ndim = 2;
+nquad_per_dim = 10;
+qrule = create_qrule_gaussleg(etype, ndim, nquad_per_dim);
+lfcnsp = create_polysp_nodal(etype, ndim, porder, qrule.zq, qrule.rq);
+nvar = 3; Qv = lfcnsp.Qv; Qvf = lfcnsp.Qvf;
+[Tv, Tvf] = create_elem_basis(nvar, Qv, Qvf);
+if size(Tv, 1) ~= 18 || size(Tv, 2) ~= 3 || size(Tv, 3) ~= 3 || ...
+    size(Tv, 4) ~= 100 || size(Tvf, 1) ~= 18 || size(Tvf, 2) ~= 3 || ...
+    size(Tvf, 3) ~= 3 || size(Tvf, 4) ~= 10 || size(Tvf, 5) ~= 3
+    error("Incorrect dimensions.")
+end
+
+%% Test 2:
+etype = 'hcube';
+qrule = create_qrule_gaussleg(etype, ndim, nquad_per_dim);
+lfcnsp = create_polysp_nodal(etype, ndim, porder, qrule.zq, qrule.rq);
+Qv = lfcnsp.Qv; Qvf = lfcnsp.Qvf;
+[Tv, Tvf] = create_elem_basis(nvar, Qv, Qvf);
+if size(Tv, 1) ~= 27 || size(Tv, 2) ~= 3 || size(Tv, 3) ~= 3 || ...
+    size(Tv, 4) ~= 100 || size(Tvf, 1) ~= 27 || size(Tvf, 2) ~= 3 || ...
+    size(Tvf, 3) ~= 3 || size(Tvf, 4) ~= 10 || size(Tvf, 5) ~= 4
+    error("Incorrect dimensions.")
+end
+
+%% If this point is reached, the test was successful.
+fprintf("Test passed.\n\n")

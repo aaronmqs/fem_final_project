@@ -29,5 +29,29 @@ Re = zeros(nvar_per_elem, 1);
 dRe = zeros(nvar_per_elem, nvar_per_elem);
 
 % Code me!
+[S, dSdU, dSdQ, F, dFdU, dFdQ] = elem.eqn.srcflux(U, Q, pars);
+for l = 1:nvar_per_elem
+    Re(l, 1) = (- Tv_ref(l, :, :, 1, :) * S - Tv_ref(l, :, :, 2:end, :) * F) * (wq .* detG);
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end
