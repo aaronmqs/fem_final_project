@@ -1,4 +1,5 @@
 clear; clc; close all;
+% Test for Part 3.1.
 
 %% Test 1:
 c = [0 0]'; r = 1; porder = 2; etype = 'simp'; ndim = 2;
