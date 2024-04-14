@@ -1,0 +1,59 @@
+function [Tv, Tvf] = create_elem_basis(nvar, Qv, Qvf)
+%CREATE_ELEM_BASIS Create element basis evaluated at point throughout
+%volume (TV) and on each face (TVF) from basis of local function space
+%evaluated at corresponding points (QV, QVF).
+%
+% Input arguments
+% ---------------
+%   NVAR, QV, QVF : See notation.m
+%
+% Output arguments
+% ----------------
+%   TV, TVF : See notation.m
+
+% Extract information from input
+ndim = size(Qv, 2)-1;
+[nv, ~, nq] = size(Qv);
+[~, ~, nqf, nf] = size(Qvf);
+
+% Element basis
+% Code me!
+ndof = 0;
+for i = 1:nv
+    for j = 1:nvar
+        dof = (i - 1) * Nc : i * (nvar + 1) - 1;
+        Tv(ndof, j, k, l) = Qv(i, k, l) * eye(nvar);
+    end
+end
+
+end
+
+% TV_REF : Array (NDOF_PER_ELEM, NVAR, NDIM+1, NQ) : Solution basis (and
+%   test function basis since using the Galerkin method) and their
+%   derivatives w.r.t. the reference domain over an element, evaluated at
+%   each quadrature point in the reference domain (\Omega_\square), ZQ.
+%   TV_REF(i, j, 1, k) = ith basis functions for variable j at ZQ(:, k).
+%   TV_REF(i, j, 1+l, k) = lth derivative (ref domain) for ith basis
+%   function for variable j at ZQ(:, k).
+%
+% TVF_REF : Array (NDOF_PER_ELEM, NVAR, NDIM+1, NQF, NF) : Solution basis
+%   (and test function basis since using the Galerkin method) and their
+%   derivatives w.r.t. the reference domain over an element, evaluated at
+%   each FACE quadrature point in the reference domain, ZQF. 
+%   TVF_REF(i, j, 1, k, f) = ith basis functions for variable j at ZQF(:, k, f).
+%   TVF_REF(i, j, 1+l, k, f) = lth derivative (ref domain) for ith basis
+%   function for variable j at ZQF(:, k, f).
+
+% QV : Array (NV, NDIM+1, NZ) : Element basis function and derivatives
+%   w.r.t. reference coordinate (Z) defined over the reference domain
+%   \Omega_\square evaluated at the VOLUME quadrature nodes ZQ, i.e.,
+%   Q(i, 1, k) = ith basis function evaluated at ZQ(:, k) and
+%   Q(i, 1+j, k) = jth partial derivative of ith basis function evaluated
+%   at ZQ(:, k).
+%
+% QVF : Array (NV, NDIM+1, NQF, NF) : Element basis function and derivatives
+%   w.r.t. reference coordinate (Z) defined over the reference domain
+%   \Omega_\square evaluated at the FACE quadrature nodes ZQF, i.e.,
+%   Q(i, 1, k, f) = ith basis function evaluated at ZQF(:, k, f) and
+%   Q(i, 1+j, k, f) = jth partial derivative of ith basis function
+%   evaluated at ZQF(:, k, f).
