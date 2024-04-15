@@ -26,12 +26,14 @@ ndim = size(Qv1, 2)-1;
 % Element basis
 % Code me!
 for i = 1:nv
-    dof1 = (i - 1) * nv1 : i * (nv1 + 1) - 1;
-    dof2 = (i - 1) * nv2 + nv1 * nv : i * (nv2 + 1) - 1 + nv1 * nv;
-    Tv(dof1, :, :, :) = kron(Qv1(i, :, :), [eye(nv1) zeros(nv1, nv2)]);
-    Tv(dof2, :, :, :) = kron(Qv2(i, :, :), [zeros(nv2, nv1) eye(nv2) ]);
-    Tvf(dof1, :, :, :, :) = kron(Qvf1(i, :, :, :), [eye(nv1) zeros(nv1, nv2)]);
-    Tvf(dof2, :, :, :, :) = kron(Qvf2(i, :, :, :), [zeros(nv2, nv1) eye(nv2)]);
+    dof1 = (i - 1) * nv1 + 1: i * nv1;
+    dof2 = (i - 1) * nv2 + 1: i * nv2;
+    for k = 1:ndim + 1
+        Tv(dof1, :, k, :) = pagemtimes(Qv1(i, k, :), [eye(nv1) zeros(nv1, nv2)]);
+        Tvf(dof1, :, k, :, :) = pagemtimes(Qvf1(i, k, :, :), [eye(nv1) zeros(nv1, nv2)]);
+        Tv(dof2, :, k, :) = pagemtimes(Qv2(i, k, :), [zeros(nv2, nv1) eye(nv2)]);
+        Tvf(dof2, :, k, :, :) = pagemtimes(Qvf2(i, k, :, :), [zeros(nv2, nv1) eye(nv2)]);
+    end
 end
 
 end
