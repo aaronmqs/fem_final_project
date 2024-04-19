@@ -29,10 +29,24 @@ Re = zeros(nvar_per_elem, 1);
 dRe = zeros(nvar_per_elem, nvar_per_elem);
 
 % Code me!
-[S, dSdU, dSdQ, F, dFdU, dFdQ] = elem.eqn.srcflux(U, Q, pars);
-for l = 1:nvar_per_elem
-    Re(l, 1) = (- Tv_ref(l, :, :, 1, :) * S - Tv_ref(l, :, :, 2:end, :) * F) * (wq .* detG);
+Tv_ref = elem.Tv_ref;
+for q = 1:nq
+    Phie = Tv_ref(:, :, 1, q);
+    U(:, q) = Phie' * Ue;
+    for j = 1:ndim
+        Q(:, j, q) = Tv_ref(:, :, j, q)' * Ue;
+    end
 end
+
+for l = 1:nvar_per_elem
+    for q = 1:nq
+        Psi = Tv_ref(l, :, 1, q);
+        dPsi = Tv_ref(l, :, 2:end, q);
+%         Re(l, 1) = Re(l, 1) +  () * detG(nq) * wq(nq);
+    end
+end
+
+
 
 
 
