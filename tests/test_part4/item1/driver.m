@@ -39,10 +39,10 @@ ndof_per_elem = size(Tv_ref, 1);
 Ue = rand(ndof_per_elem, 1);
 
 % Integrate element Galerkin form (volume term) and Jacobian (element 1)
-[Re, dRe] = intg_elem_claw_vol(Ue, transf_data(1), elem(1), elem_data(1));
+[Re_vol, dRe] = intg_elem_claw_vol(Ue, transf_data(1), elem(1), elem_data(1));
 
+Re_bnd = intg_elem_claw_extface(transf_data(1), elem(1), elem_data(1));
 
-
-
+Re = Re_vol + Re_bnd;
 
 
