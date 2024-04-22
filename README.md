@@ -36,14 +36,14 @@ The notation used in the code follows what's described in the [Project](https://
   - [x] Part 2.4 
     - [x] 1
     - [x] 2
-- [ ] Part 3
+- [x] Part 3
   - [x] Part 3.1
   - [x] Part 3.2 [DUE TO 04/19]
-- [ ] Part 4
-    - [ ] 1
-    - [ ] 2
-    - [ ] 3
-    - [ ] 4
+- [x] Part 4
+    - [x] 1
+    - [x] 2
+    - [x] 3
+    - [x] 4
     - [ ] 5
     - [ ] 6
 - [ ] Part 5
