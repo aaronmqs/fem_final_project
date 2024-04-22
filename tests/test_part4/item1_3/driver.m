@@ -35,14 +35,17 @@ elem_data = create_elem_data(Tv_ref, Tvf_ref, ...
                                         bnd_pars_fcn);
 
 % Create random state
+nelem = numel(elem_data);
 ndof_per_elem = size(Tv_ref, 1);
-Ue = rand(ndof_per_elem, 1);
+ndof = nelem * ndof_per_elem;
+U = rand(ndof, 1);
 
-% Integrate element Galerkin form (volume term) and Jacobian (element 1)
-[Re_vol, dRe] = intg_elem_claw_vol(Ue, transf_data(1), elem(1), elem_data(1));
+% % Integrate element Galerkin form (volume term) and Jacobian (element 1)
+% [Re_vol, dRe] = intg_elem_claw_vol(Ue, transf_data(1), elem(1), elem_data(1));
+% Re_bnd = intg_elem_claw_extface(transf_data(1), elem(1), elem_data(1));
+% Re1 = Re_vol + Re_bnd;
 
-Re_bnd = intg_elem_claw_extface(transf_data(1), elem(1), elem_data(1));
-
-Re = Re_vol + Re_bnd;
-
+ndof_per_node = nvar;
+ldof2gdof = create_ldof2gdof_cg(ndof_per_node, msh.e2vcg);
+[Re, dRe] = eval_unassembled_resjac_claw_cg(U, transf_data, elem, elem_data, ldof2gdof);
 

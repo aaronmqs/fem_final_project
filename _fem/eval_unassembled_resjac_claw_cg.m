@@ -26,5 +26,12 @@ Re = zeros(nvar_per_elem, nelem);
 dRe = zeros(nvar_per_elem, nvar_per_elem, nelem);
 
 % Code me!
+for e = 1:nelem
+    idxe = ldof2gdof(:, e);
+    Ue = U(idxe);
+    [Re_vol, dRe(:, :, e)] = intg_elem_claw_vol(Ue, transf_data(e), elem, elem_data(e));
+    Re_bnd = intg_elem_claw_extface(transf_data(e), elem, elem_data(e));
+    Re(:, e) = Re_vol + Re_bnd;
+end
 
 end
