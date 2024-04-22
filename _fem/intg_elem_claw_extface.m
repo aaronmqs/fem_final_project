@@ -32,7 +32,7 @@ for q = 1:nqf
     for f_idx = 1:length(bnd_faces_idx)
         f = bnd_faces_idx(f_idx);
         Psi = squeeze(Tvf_ref(:, :, 1, q, f));
-        Re = Re + Psi * bnd_pars(:, q, f) * sigf(q, f);
+        Re = Re + Psi * bnd_pars(:, q, f) * sigf(q, f) * wqf(q);
     end
 end
 
