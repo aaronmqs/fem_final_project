@@ -29,43 +29,58 @@ Re = zeros(nvar_per_elem, 1);
 dRe = zeros(nvar_per_elem, nvar_per_elem);
 
 % Code me!
+
+% Preallocate
+S = zeros(neqn, 1, nq);
+dSdU = zeros(neqn, nvar, nq);
+dSdQ = zeros(neqn, nvar, ndim, nq);
+F = zeros(neqn, ndim, nq);
+dFdU = zeros(neqn, ndim, nvar, nq);
+dFdQ = zeros(neqn, ndim, nvar, ndim, nq);
+U = zeros(nvar, nq);
+Q = zeros(nvar, ndim, nq);
+
+% Solution basis evaluated at the quadrature nodes
 Tv_ref = elem.Tv_ref;
+Tv_phys = elem_data.Tv_phys;
+vol_pars = elem_data.vol_pars;
+
 for q = 1:nq
+    % State gradient
     Phie = Tv_ref(:, :, 1, q);
-    U(:, q) = Phie' * Ue;
     for j = 1:ndim
-        Q(:, j, q) = Tv_ref(:, :, j, q)' * Ue;
+        Q(:, j, q) = Tv_phys(:, :, j, q)' * Ue;
     end
-end
 
-for l = 1:nvar_per_elem
-    for q = 1:nq
-        Psi = Tv_ref(l, :, 1, q);
-        dPsi = Tv_ref(l, :, 2:end, q);
-%         Re(l, 1) = Re(l, 1) +  () * detG(nq) * wq(nq);
+    % Source and flux
+    [S(:, q), dSdU(:, :, q), dSdQ(:, :, :, q), F(:, :, q), dFdU(:, :, :, q), dFdQ(:, :, :, :, q)] = elem.eqn.srcflux(Phie' * Ue, Q(:, :, q), vol_pars(:, q));
+
+    Psi = Tv_ref(:, :, 1, q);
+    dPsi = squeeze(Tv_phys(:, :, 2:end, q));
+
+    part1 = dSdU(:, :, q) * Psi';
+    part2 = zeros(size(part1));
+    part3 = zeros(neqn, ndim, nvar_per_elem);
+    part4 = zeros(size(part3));
+    part6 = zeros(nvar_per_elem, nvar_per_elem);
+    for r = 1:nvar_per_elem
+        for i = 1:neqn
+            part2(i, r) = sum( squeeze(dSdQ(i, :, :, q)) .* squeeze(dPsi(r, :, :) ) , 'all');
+            part3(i, :, r) = squeeze(dFdU(i, :, :, q)) * Psi(r, :)';
+            for j = 1:ndim
+                part4(i, j, r) = sum(squeeze(dFdQ(i, j, :, :, q)) .* squeeze(dPsi(r, :, :)), 'all');
+            end
+        end
+        part5 = part3 + part4;
+        for l = 1:nvar_per_elem
+            part6(l, r) = - sum(squeeze(dPsi(l, :, :)) .* part5, 'all');
+        end
+        Re(r, 1) = Re(r, 1) + (- Psi(r, :) * S(:, q) - sum(squeeze(dPsi(r, :, :)) .* F(:, :, q), 'all')) * detG(q) * wq(q);
     end
+    part7 = part1 + part2;
+    part8 = - Psi * part7;
+    integrand = (part8 + part6) * detG(q);
+    dRe = dRe + integrand * wq(q);
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 end

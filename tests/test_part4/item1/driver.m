@@ -38,8 +38,8 @@ elem_data = create_elem_data(Tv_ref, Tvf_ref, ...
 ndof_per_elem = size(Tv_ref, 1);
 Ue = rand(ndof_per_elem, 1);
 
-% Integrate element Galerkin form (volume term) and Jacobian
-[Re, dRe] = intg_elem_claw_vol(Ue, transf_data, elem, elem_data);
+% Integrate element Galerkin form (volume term) and Jacobian (element 1)
+[Re, dRe] = intg_elem_claw_vol(Ue, transf_data(1), elem(1), elem_data(1));
 
 
 
