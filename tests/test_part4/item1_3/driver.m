@@ -40,12 +40,19 @@ ndof_per_elem = size(Tv_ref, 1);
 ndof = nelem * ndof_per_elem;
 U = rand(ndof, 1);
 
+% Elemental residual
 % % Integrate element Galerkin form (volume term) and Jacobian (element 1)
 % [Re_vol, dRe] = intg_elem_claw_vol(Ue, transf_data(1), elem(1), elem_data(1));
 % Re_bnd = intg_elem_claw_extface(transf_data(1), elem(1), elem_data(1));
 % Re1 = Re_vol + Re_bnd;
 
+% % Unassembled residual
 ndof_per_node = nvar;
 ldof2gdof = create_ldof2gdof_cg(ndof_per_node, msh.e2vcg);
-[Re, dRe] = eval_unassembled_resjac_claw_cg(U, transf_data, elem, elem_data, ldof2gdof);
+% [Re, dRe] = eval_unassembled_resjac_claw_cg(U, transf_data, elem, elem_data, ldof2gdof);
+
+% Assembled residual
+spmat = create_sparsity_strct(ldof2gdof);
+[R, dR] = eval_assembled_resjac_claw_cg(U, transf_data, elem, elem_data, ...
+                                                 ldof2gdof, spmat);
 
