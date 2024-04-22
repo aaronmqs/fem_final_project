@@ -18,7 +18,6 @@ function [R, dR] = eval_assembled_resjac_claw_cg(U, transf_data, elem, elem_data
 % Code me!
 cooidx = spmat.cooidx;
 lmat2gmat = spmat.lmat2gmat;
-nnz = size(cooidx, 1);
 
 [Ru, dRu] = eval_unassembled_resjac_claw_cg(U, transf_data, elem, elem_data, ldof2gdof);
 dR = assemble_nobc_mat(dRu, cooidx, lmat2gmat);
