@@ -38,14 +38,12 @@ x = x0; [R, dR] = fcn(x);
 for k = 1:maxit
     % Code me!
     r_nrm(k) = norm(R, "inf");
-    dx =  - inv(dR) * R;
-    dx_nrm(k) = norm(dx);
     if r_nrm(k) < tol
-        r_nrm = r_nrm(1:k);
-        dx_nrm = dx_nrm(1:k);
-        info = struct('succ', true, 'nit', k-1, 'r_nrm', r_nrm, 'dx_nrm', dx_nrm); 
+        info = struct('succ', true, 'nit', k-1, 'r_nrm', r_nrm(1:k-1), 'dx_nrm', dx_nrm(1:k-1)); 
         return
     end
+    dx =  - dR \ R;
+    dx_nrm(k) = norm(dx);
     x = x + dx;
     [R, dR] = fcn(x);
 end
