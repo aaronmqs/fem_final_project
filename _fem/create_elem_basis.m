@@ -18,11 +18,30 @@ ndim = size(Qv, 2)-1;
 
 % Element basis
 % Code me!
-for i = 1:nv
-    dof = (i - 1) * nvar + 1: i * nvar;
-    for k = 1:ndim + 1
-        Tv(dof, :, k, :) = pagemtimes(Qv(i, k, :), eye(nvar));
-        Tvf(dof, :, k, :, :) = pagemtimes(Qvf(i, k, :, :), eye(nvar));
+
+% Preallocate
+Tv = zeros(ndof, nvar, ndim+1, nq);
+Tvf = zeros(ndof, nvar, ndim+1, nqf, nf);
+
+% Evaluate Tv
+for q = 1:nq
+    for i = 1:nv
+        dof = (i - 1) * nvar + 1: i * nvar;
+        for k = 1:ndim+1
+            Tv(dof, :, k, q) = Qv(i, k, q) * eye(nvar);
+        end
+    end
+end
+
+% Evaluate Tvf
+for q = 1:nqf
+    for i = 1:nv
+        dof = (i - 1) * nvar + 1: i * nvar;
+        for k = 1:ndim+1
+            for f = 1:nf
+                Tvf(dof, :, k, q, f) = Qvf(i, k, q, f) * eye(nvar);
+            end
+        end
     end
 end
 
