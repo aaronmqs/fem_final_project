@@ -20,8 +20,9 @@ ndim = size(Qv, 2)-1;
 % Code me!
 
 % Preallocate
-Tv = zeros(ndof, nvar, ndim+1, nq);
-Tvf = zeros(ndof, nvar, ndim+1, nqf, nf);
+ndof_per_elem = nvar * nv;
+Tv = zeros(ndof_per_elem, nvar, ndim+1, nq);
+Tvf = zeros(ndof_per_elem, nvar, ndim+1, nqf, nf);
 
 % Evaluate Tv
 for q = 1:nq

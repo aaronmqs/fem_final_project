@@ -11,7 +11,10 @@ msh = create_mesh_hcube(etype, lims, nel, porder);
 % visualize_fem([], msh);
 
 % Create Dirichlet boundary conditions
-ndof = numel(msh.xcg); dbc_idx = 1; dbc_val = 0.0;
+ndof_per_node = prob.eqn.nvar;
+ldof2gdof = create_ldof2gdof_cg(ndof_per_node, msh.e2vcg); 
+dbc_idx = 1; dbc_val = 0.0;
+ndof = max(ldof2gdof(:));
 dbc = create_dbc_strct(ndof, dbc_idx, dbc_val);
 
 % Create finite element space
@@ -20,5 +23,6 @@ femsp = create_femsp_cg(prob, msh, porder, e2vcg_porder, dbc);
 
 % Test function that creates residual and its jacobian retricted to the
 % unconstrained DoFs.
-Uu = rand();
+ndbc = length(dbc_idx);
+Uu = rand(ndof - ndbc, 1);
 [Ru, dRu] = create_fem_resjac(Uu, femsp);
