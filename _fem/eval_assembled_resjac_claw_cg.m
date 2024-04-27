@@ -16,11 +16,9 @@ function [R, dR] = eval_assembled_resjac_claw_cg(U, transf_data, elem, elem_data
 %   dR : Array (NDOF, NDOF) : Assembled Jacobian matrix PRIOR to static condensation
 
 % Code me!
-cooidx = spmat.cooidx;
-lmat2gmat = spmat.lmat2gmat;
-
 [Ru, dRu] = eval_unassembled_resjac_claw_cg(U, transf_data, elem, elem_data, ldof2gdof);
-dR = assemble_nobc_mat(dRu, cooidx, lmat2gmat);
+
+dR = assemble_nobc_mat(dRu, spmat.cooidx, spmat.lmat2gmat);
 R = assemble_nobc_vec(Ru, ldof2gdof);
 
 end
