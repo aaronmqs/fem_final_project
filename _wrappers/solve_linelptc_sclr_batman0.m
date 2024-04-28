@@ -29,7 +29,7 @@ prob.eqn = LinearEllipticScalar(ndim);
 % prob.vol_pars_fcn = % TODO
 prob.vol_pars_fcn = @(x) [1; 0; 0; 10; 0];
 % prob.bnd_pars_fcn = % TODO
-prob.bnd_pars_fcn = @(x, bnd) -10 * (bnd == 1 || bnd == 2);
+prob.bnd_pars_fcn = @(x, bnd) -10 * sin(x(1)) * (bnd == 1 || bnd == 2);
 
 % Extract indices and set values of dirichlet boundary conditions
 % dbc_idx = % TODO

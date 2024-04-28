@@ -26,14 +26,22 @@ xcg = msh.xcg; e2vcg = msh.e2vcg; e2bnd = msh.e2bnd;
 
 % Setup equation parameters and natural boundary conditions
 prob.eqn = LinearEllipticScalar(2);
-prob.vol_pars_fcn = % TODO
-prob.bnd_pars_fcn = % TODO
+% prob.vol_pars_fcn = % TODO
+prob.vol_pars_fcn = @(x) [1; 0; 0; 1; 0];
+% prob.bnd_pars_fcn = % TODO
+prob.bnd_pars_fcn = @(x, bnd) 0;
 
 % Extract indices and set values of dirichlet boundary conditions
 [~, f2v, ~] = create_nodes_bndy_refdom_simp(ndim, porder);
 
-dbc_idx = % TODO
-dbc_val = % TODO
+% dbc_idx = % TODO
+ndof_per_node = nvar;
+ldof2gdof = create_ldof2gdof_cg(ndof_per_node, e2vcg);
+ldof = 1;
+dbc_idx1 = get_gdof_from_bndtag(ldof, 1, ndof_per_node, ldof2gdof, e2bnd, f2v);
+dbc_idx2 = get_gdof_from_bndtag(ldof, 2, ndof_per_node, ldof2gdof, e2bnd, f2v);
+% dbc_val = % TODO
+dbc_val = [zeros(size(dbc_idx1)); 10 * ones(size(dbc_idx2))];
 
 ndof = size(xcg, 2);
 dbc = create_dbc_strct(ndof, dbc_idx, dbc_val);
@@ -48,7 +56,7 @@ tol = 1.0e-8; maxit = 10;
 % Visualize FEM solution
 if pltit
     % Evaluate FEM solution throughout domain
-    xeval = % TODO
+%     xeval = % TODO
     Ux = eval_fem_soln(U(femsp.ldof2gdof), xeval, msh, femsp.elem);
 
     visualize_fem([], msh, U(e2vcg), struct('plot_elem', true, 'nref', 2));
