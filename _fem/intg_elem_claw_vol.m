@@ -29,58 +29,46 @@ Re = zeros(nvar_per_elem, 1);
 dRe = zeros(nvar_per_elem, nvar_per_elem);
 
 % Code me!
-
-% Preallocate
-S = zeros(neqn, 1, nq);
-dSdU = zeros(neqn, nvar, nq);
-dSdQ = zeros(neqn, nvar, ndim, nq);
-F = zeros(neqn, ndim, nq);
-dFdU = zeros(neqn, ndim, nvar, nq);
-dFdQ = zeros(neqn, ndim, nvar, ndim, nq);
-U = zeros(nvar, nq);
-Q = zeros(nvar, ndim, nq);
-
-% Solution basis evaluated at the quadrature nodes
-Tv_ref = elem.Tv_ref;
 Tv_phys = elem_data.Tv_phys;
-vol_pars = elem_data.vol_pars;
 
 for q = 1:nq
-    % State gradient
-    Phie = Tv_ref(:, :, 1, q);
+    U = Tv_phys(:, :, 1, q)' * Ue;
+    dUdX = zeros(neqn, ndim);
     for j = 1:ndim
-        Q(:, j, q) = Tv_phys(:, :, j, q)' * Ue;
+        dUdX(:, j) = Tv_phys(:, :, 1 + j, q)' * Ue;
     end
-
-    % Source and flux
-    [S(:, q), dSdU(:, :, q), dSdQ(:, :, :, q), F(:, :, q), dFdU(:, :, :, q), dFdQ(:, :, :, :, q)] = elem.eqn.srcflux(Phie' * Ue, Q(:, :, q), vol_pars(:, q));
-
-    Psi = Tv_ref(:, :, 1, q);
-    dPsi = squeeze(Tv_phys(:, :, 2:end, q));
-
-    part1 = dSdU(:, :, q) * Psi';
-    part2 = zeros(size(part1));
-    part3 = zeros(neqn, ndim, nvar_per_elem);
-    part4 = zeros(size(part3));
-    part6 = zeros(nvar_per_elem, nvar_per_elem);
-    for r = 1:nvar_per_elem
-        for i = 1:neqn
-            part2(i, r) = sum( squeeze(dSdQ(i, :, :, q)) .* squeeze(dPsi(r, :, :) ) , 'all');
-            part3(i, :, r) = squeeze(dFdU(i, :, :, q)) * Psi(r, :)';
+    pars = elem_data.vol_pars(:, q);
+    [S, dSdU, dSdQ, F, dFdU, dFdQ] = elem.eqn.srcflux(U, dUdX, pars);
+    
+    % Residual
+    integrand_Re = zeros(nvar_per_elem, 1);
+    for l = 1:nvar_per_elem
+        integrand_Re(l, 1) = - Tv_phys(l, :, 1, q) * S;
+        for j = 1:ndim
+            integrand_Re(l, 1) = integrand_Re(l, 1) - Tv_phys(l, :, 1 + j, q) * F(:, j);
+        end
+    end
+    integrand_Re = integrand_Re * detG(q);
+    Re = Re + integrand_Re * wq(q);
+    
+    % Jacobian
+    integrand_dRe = zeros(nvar_per_elem, nvar_per_elem);
+    for l = 1:nvar_per_elem
+        for r = 1:nvar_per_elem
+            integrand_dRe(l, r) = - Tv_phys(l, :, 1, q) * dSdU * Tv_phys(r, :, 1, q)';
+            for s = 1:ndim
+                integrand_dRe(l, r) = integrand_dRe(l, r) - Tv_phys(l, :, 1, q) * dSdQ(:, :, s) * Tv_phys(r, :, 1 + s, q)';
+            end
             for j = 1:ndim
-                part4(i, j, r) = sum(squeeze(dFdQ(i, j, :, :, q)) .* squeeze(dPsi(r, :, :)), 'all');
+                integrand_dRe(l, r) = integrand_dRe(l, r) - Tv_phys(l, :, 1 + j, q) * squeeze(dFdU(:, j, :)) * Tv_phys(r, :, 1, q)';
+                for s = 1:ndim
+                    integrand_dRe(l, r) = integrand_dRe(l, r) - Tv_phys(l, :, 1 + j, q) * squeeze(dFdQ(:, j, :, s)) * Tv_phys(r, :, 1 + s, q)';
+                end
             end
         end
-        part5 = part3 + part4;
-        for l = 1:nvar_per_elem
-            part6(l, r) = - sum(squeeze(dPsi(l, :, :)) .* part5, 'all');
-        end
-        Re(r, 1) = Re(r, 1) + (- Psi(r, :) * S(:, q) - sum(squeeze(dPsi(r, :, :)) .* F(:, :, q), 'all')) * detG(q) * wq(q);
     end
-    part7 = part1 + part2;
-    part8 = - Psi * part7;
-    integrand = (part8 + part6) * detG(q);
-    dRe = dRe + integrand * wq(q);
+    integrand_dRe = integrand_dRe * detG(q);
+    dRe = dRe + integrand_dRe * wq(q);
 end
 
 end

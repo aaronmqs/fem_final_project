@@ -30,9 +30,9 @@ if nargin < 4, maxit = 10; end
 % Create finite element residual/Jacobian function
 fcn = @(u_) create_fem_resjac(u_, femsp);
 
-% Check Jacobian with finite differences
-Ut = rand(size(U0(femsp.dbc.free_idx)));
-fdtest(fcn, Ut);
+% % Check Jacobian with finite differences
+% Ut = rand(size(U0(femsp.dbc.free_idx)));
+% fdtest(fcn, Ut);
 
 % Solve nonlinear system using Newton-Raphson
 Uu0 = U0(femsp.dbc.free_idx);

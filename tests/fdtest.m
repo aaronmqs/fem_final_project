@@ -11,4 +11,6 @@ for j = 1:d
 end
 if norm(dF_fd - dF) > 1e-6 ; error("Incorrect jacobian function."); end
 
+fprintf("Test passed");
+
 end
