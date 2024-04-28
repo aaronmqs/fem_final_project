@@ -9,12 +9,12 @@ lfcnsp = create_polysp_nodal(etype, ndim, porder, qrule.zq, qrule.rq);
 transf_data = create_transf_data_ndim(lfcnsp, msh.xcg, msh.e2vcg, msh.e2bnd);
 [v, c, sa] = compute_domain_metrics(transf_data, qrule);
 
-% Visualize mesh
-visualize_fem([], msh);
-if ndim == 2
-    scatter(c(1), c(2), 'filled', 'MarkerFaceColor','k')
-elseif ndim == 3
-    scatter3(c(1), c(2), c(3), 'filled', 'MarkerFaceColor','k')
-end
+% % Visualize mesh
+% visualize_fem([], msh);
+% if ndim == 2
+%     scatter(c(1), c(2), 'filled', 'MarkerFaceColor','k')
+% elseif ndim == 3
+%     scatter3(c(1), c(2), c(3), 'filled', 'MarkerFaceColor','k')
+% end
 
 end

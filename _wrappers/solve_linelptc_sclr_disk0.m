@@ -27,12 +27,19 @@ xcg = msh.xcg; e2vcg = msh.e2vcg;
 % Setup equation parameters and natural boundary conditions
 K = eye(2); f = 1; Qb = 0;
 prob.eqn = LinearEllipticScalar(2);
-prob.vol_pars_fcn = % TODO
-prob.bnd_pars_fcn = % TODO
+% prob.vol_pars_fcn = % TODO
+prob.vol_pars_fcn = @(x) [K(:); f];
+% prob.bnd_pars_fcn = % TODO
+prob.bnd_pars_fcn = @(x, bnd) 0;
 
 % Extract indices and set values of dirichlet boundary conditions
-dbc_idx = % TODO
-dbc_val = % TODO
+% dbc_idx = % TODO
+ndof_per_node = nvar;
+ldof2gdof = create_ldof2gdof_cg(ndof_per_node, e2vcg);
+ldof = 1; bndtag = 1;
+dbc_idx = get_gdof_from_bndtag(ldof, bndtag, ndof_per_node, ldof2gdof, msh.e2bnd, msh.lfcnsp.f2v);
+% dbc_val = % TODO
+dbc_val = Qb * ones(size(dbc_idx));
 dbc = create_dbc_strct(size(xcg, 2)*nvar, dbc_idx, dbc_val);
 
 % Evaluate exact solution on mesh
@@ -52,7 +59,8 @@ E = U-Ue; E = sqrt(E'*M*E);
 % Plot solution, if requested                     
 if pltit
     % Evaluate FEM solution throughout domain
-    xeval = % TODO
+%     xeval = % TODO
+    xeval = [linspace(-1, 1); zeros(1, 100)];
     Ux = eval_fem_soln(U(femsp.ldof2gdof), xeval, msh, femsp.elem);
 
     figure;
