@@ -5,7 +5,7 @@ The notation used in the code follows what's described in the [Project](https://
 # Questions:
 
 - [ ] Part 4.6: why is the optimal convergence rate for poder = 2 so high? Is it because there's a 2nd degree polynomial as part of the exact solution?
-- [ ] Part 5.3: Is [~, f2v, ~] = create_nodes_bndy_refdom_simp(ndim, porder); the same as msh.lfcnsp.f2v?
+- [ ] Part 5.3: Is [~, f2v, ~] = create_nodes_bndy_refdom_simp(ndim, porder); the same as msh.lfcnsp.f2v? (Same thing on Part 5.4)
 
 # What was done so far:
 
@@ -51,11 +51,11 @@ The notation used in the code follows what's described in the [Project](https://
     - [x] 4
     - [x] 5
     - [x] 6
-- [ ] Part 5
+- [x] Part 5
   - [x] 1
   - [x] 2
-  - [ ] 3
-  - [ ] 4
+  - [x] 3
+  - [x] 4
 - [ ] Part 6
   - [ ] 1
   - [ ] 2
