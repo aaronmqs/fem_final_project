@@ -36,7 +36,7 @@ prob.bnd_pars_fcn = @(x, bnd) -10 * (bnd == 1 || bnd == 2);
 ndof_per_node = nvar;
 ldof2gdof = create_ldof2gdof_cg(ndof_per_node, e2vcg);
 ldof = 1; bndtag = 3;
-dbc_idx = get_gdof_from_bndtag(ldof, bndtag, ndof_per_node, ldof2gdof, msh.e2bnd, msh.lfcnsp.f2v);
+dbc_idx = get_gdof_from_bndtag(ldof, bndtag, ndof_per_node, ldof2gdof, e2bnd, msh.lfcnsp.f2v);
 % dbc_val = % TODO
 dbc_val = zeros(size(dbc_idx));
 
@@ -54,7 +54,7 @@ tol = 1.0e-8; maxit = 10;
 if pltit
     % Evaluate FEM solution throughout domain
 %     xeval = % TODO
-    xeval = [linspace(0.25, 0.75); -0.2];
+    xeval = [linspace(0.25, 0.75); -0.2 * ones(1, 100)];
     Ux = eval_fem_soln(U(femsp.ldof2gdof), xeval, msh, femsp.elem);
 
     visualize_fem([], msh, U(e2vcg), struct('plot_elem', true));
