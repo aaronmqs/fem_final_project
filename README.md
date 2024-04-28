@@ -51,11 +51,11 @@ The notation used in the code follows what's described in the [Project](https://
     - [x] 4
     - [x] 5
     - [x] 6
-- [ ] Part 5
+- [x] Part 5
   - [x] 1
   - [x] 2
   - [x] 3
-  - [ ] 4
+  - [x] 4
 - [ ] Part 6
   - [ ] 1
   - [ ] 2
