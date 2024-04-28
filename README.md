@@ -49,9 +49,9 @@ The notation used in the code follows what's described in the [Project](https://
     - [x] 3
     - [x] 4
     - [x] 5
-    - [ ] 6
+    - [x] 6
 - [ ] Part 5
-  - [ ] 1
+  - [x] 1
   - [ ] 2
   - [ ] 3
   - [ ] 4
