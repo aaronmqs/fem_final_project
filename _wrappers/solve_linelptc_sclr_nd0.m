@@ -40,6 +40,7 @@ ldof2gdof = create_ldof2gdof_cg(ndof_per_node, e2vcg);
 ldof = 1;
 dbc_idx1 = get_gdof_from_bndtag(ldof, 1, ndof_per_node, ldof2gdof, e2bnd, f2v);
 dbc_idx2 = get_gdof_from_bndtag(ldof, 2, ndof_per_node, ldof2gdof, e2bnd, f2v);
+dbc_idx = get_gdof_from_bndtag(ldof, [1 2], ndof_per_node, ldof2gdof, e2bnd, f2v);
 % dbc_val = % TODO
 dbc_val = [zeros(size(dbc_idx1)); 10 * ones(size(dbc_idx2))];
 
@@ -57,13 +58,32 @@ tol = 1.0e-8; maxit = 10;
 if pltit
     % Evaluate FEM solution throughout domain
 %     xeval = % TODO
-    Ux = eval_fem_soln(U(femsp.ldof2gdof), xeval, msh, femsp.elem);
+    xeval1 = [linspace(-1/6, 7/6); -0.25 * ones(1, 100)];
+    Ux1 = eval_fem_soln(U(femsp.ldof2gdof), xeval1, msh, femsp.elem);
+
+    xeval2 = [linspace(-1/6, 7/6); -0.64 * ones(1, 100)];
+    Ux2 = eval_fem_soln(U(femsp.ldof2gdof), xeval2, msh, femsp.elem);
+
+    xeval3 = [0.33 * ones(1, 100); linspace(-9/8, 1/8)];
+    Ux3 = eval_fem_soln(U(femsp.ldof2gdof), xeval3, msh, femsp.elem);
+
+    xeval4 = [0.73 * ones(1, 100); linspace(-9/8, 1/8)];
+    Ux4 = eval_fem_soln(U(femsp.ldof2gdof), xeval4, msh, femsp.elem);
 
     visualize_fem([], msh, U(e2vcg), struct('plot_elem', true, 'nref', 2));
     colorbar;
 
     figure;
-    plot(xeval(1, :), squeeze(Ux(1, 1, :)), 'k-', 'linewidth', 2);
+    plot(xeval1(1, :), squeeze(Ux1(1, 1, :)), 'k-', 'linewidth', 2);
+
+    figure
+    plot(xeval2(1, :), squeeze(Ux2(1, 1, :)), 'k-', 'linewidth', 2);
+
+    figure
+    plot(xeval3(1, :), squeeze(Ux3(1, 1, :)), 'k-', 'linewidth', 2);
+
+    figure
+    plot(xeval4(1, :), squeeze(Ux4(1, 1, :)), 'k-', 'linewidth', 2);
 end
 
 end
