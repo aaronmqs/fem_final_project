@@ -24,14 +24,14 @@ if isempty(U), ndof = max(ldof2gdof(:)); U = zeros(ndof, 1); end
 % Preallocate and assemble
 Re = zeros(nvar_per_elem, nelem);
 dRe = zeros(nvar_per_elem, nvar_per_elem, nelem);
-for e = 1:nelem
-    % Extract element degrees of freedom
-    Ue = U(ldof2gdof(:, e));
 
-    % Evaluate element residual/Jacobian and store in global array
-    [Re0_, dRe(:, :, e)] = intg_elem_claw_vol(Ue, transf_data(e), elem, elem_data(e));
-    [Re1_] = intg_elem_claw_extface(transf_data(e), elem, elem_data(e));
-    Re(:, e) = Re0_+Re1_;
+% Code me!
+for e = 1:nelem
+    idxe = ldof2gdof(:, e);
+    Ue = U(idxe);
+    [Re_vol, dRe(:, :, e)] = intg_elem_claw_vol(Ue, transf_data(e), elem, elem_data(e));
+    Re_bnd = intg_elem_claw_extface(transf_data(e), elem, elem_data(e));
+    Re(:, e) = Re_vol + Re_bnd;
 end
 
 end

@@ -24,51 +24,34 @@ wq = elem.qrule.wq;
 % Extract information from input : isoparametric
 detG = transf_data.detG;
 
+% Extract information from input : basis
+Tvar = reshape(elem_data.Tv_phys, [nvar_per_elem, nvar*(ndim+1)*nq]);
+
 % Preallocate element residual and Jacobian
 Re = zeros(nvar_per_elem, 1);
 dRe = zeros(nvar_per_elem, nvar_per_elem);
 
-% Code me!
-Tv_phys = elem_data.Tv_phys;
+% Move primary variables from nodes to quadrature nodes
+UQq = reshape(Tvar'*Ue, [nvar, ndim+1, nq]);
 
-for q = 1:nq
-    U = Tv_phys(:, :, 1, q)' * Ue;
-    dUdX = zeros(neqn, ndim);
-    for j = 1:ndim
-        dUdX(:, j) = Tv_phys(:, :, 1 + j, q)' * Ue;
-    end
-    pars = elem_data.vol_pars(:, q);
-    [S, dSdU, dSdQ, F, dFdU, dFdQ] = elem.eqn.srcflux(U, dUdX, pars);
+% Integrate volume term
+w = wq.*detG;
+for k = 1:nq
+    % Solution basis functions and a derivative at quadrature point
+    Tvar = reshape(elem_data.Tv_phys(:, :, :, k), [nvar_per_elem, nvar*(ndim+1)]);
     
-    % Residual
-    integrand_Re = zeros(nvar_per_elem, 1);
-    for l = 1:nvar_per_elem
-        integrand_Re(l, 1) = - Tv_phys(l, :, 1, q) * S;
-        for j = 1:ndim
-            integrand_Re(l, 1) = integrand_Re(l, 1) - Tv_phys(l, :, 1 + j, q) * F(:, j);
-        end
-    end
-    integrand_Re = integrand_Re * detG(q);
-    Re = Re + integrand_Re * wq(q);
-    
-    % Jacobian
-    integrand_dRe = zeros(nvar_per_elem, nvar_per_elem);
-    for l = 1:nvar_per_elem
-        for r = 1:nvar_per_elem
-            integrand_dRe(l, r) = - Tv_phys(l, :, 1, q) * dSdU * Tv_phys(r, :, 1, q)';
-            for s = 1:ndim
-                integrand_dRe(l, r) = integrand_dRe(l, r) - Tv_phys(l, :, 1, q) * dSdQ(:, :, s) * Tv_phys(r, :, 1 + s, q)';
-            end
-            for j = 1:ndim
-                integrand_dRe(l, r) = integrand_dRe(l, r) - Tv_phys(l, :, 1 + j, q) * squeeze(dFdU(:, j, :)) * Tv_phys(r, :, 1, q)';
-                for s = 1:ndim
-                    integrand_dRe(l, r) = integrand_dRe(l, r) - Tv_phys(l, :, 1 + j, q) * squeeze(dFdQ(:, j, :, s)) * Tv_phys(r, :, 1 + s, q)';
-                end
-            end
-        end
-    end
-    integrand_dRe = integrand_dRe * detG(q);
-    dRe = dRe + integrand_dRe * wq(q);
+    % Evaluate pointwise quantities (flux, source) and reshape
+    pars = elem_data.vol_pars(:, k);
+    [S, dSdU, dSdQ, F, dFdU, dFdQ] = elem.eqn.srcflux(UQq(:, 1, k), UQq(:, 2:end, k), pars);
+    SF = [S, F]; SF = SF(:);
+    dSFdU = cat(2, reshape(dSdU, [neqn, 1, nvar]), dFdU);
+    dSFdQ = cat(2, reshape(dSdQ, [neqn, 1, nvar, ndim]), dFdQ);
+    dSFdUQ = cat(4, reshape(dSFdU, [neqn, ndim+1, nvar, 1]), dSFdQ);
+    dSFdUQ = reshape(dSFdUQ, [neqn*(ndim+1), nvar*(ndim+1)]);
+
+    % Add contribution to element residual and Jacobian
+    Re = Re - w(k)*(Tvar*SF);
+    dRe = dRe - w(k)*(Tvar*(dSFdUQ*Tvar'));
 end
 
 end

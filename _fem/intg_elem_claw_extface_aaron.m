@@ -24,13 +24,15 @@ sigf = transf_data.sigf;
 Re = zeros(nvar_per_elem, 1);
 
 % Integrate boundary term
-wf = bsxfun(@(a, b) a.*b, wqf(:), sigf);
-for f = 1:nf
-    if isnan(e2bnd(f)), continue; end
-    for k = 1:nqf
-        Teqn = elem_data.Tvf_phys(:, :, 1, k, f);
-        Fb = elem_data.bnd_pars(:, k, f);
-        Re = Re + wf(k, f)*(Teqn*Fb);
+% Code me!
+bnd_faces_idx = find(~isnan(e2bnd));
+Tvf_ref = elem.Tvf_ref;
+bnd_pars = elem_data.bnd_pars;
+for q = 1:nqf
+    for f_idx = 1:length(bnd_faces_idx)
+        f = bnd_faces_idx(f_idx);
+        Psi = squeeze(Tvf_ref(:, :, 1, q, f));
+        Re = Re + Psi * bnd_pars(:, q, f) * sigf(q, f) * wqf(q);
     end
 end
 

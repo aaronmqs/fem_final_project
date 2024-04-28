@@ -80,10 +80,10 @@ if pltit
     plot(xeval2(1, :), squeeze(Ux2(1, 1, :)), 'k-', 'linewidth', 2);
 
     figure
-    plot(xeval3(1, :), squeeze(Ux3(1, 1, :)), 'k-', 'linewidth', 2);
+    plot(xeval3(2, :), squeeze(Ux3(1, 1, :)), 'k-', 'linewidth', 2);
 
     figure
-    plot(xeval4(1, :), squeeze(Ux4(1, 1, :)), 'k-', 'linewidth', 2);
+    plot(xeval4(2, :), squeeze(Ux4(1, 1, :)), 'k-', 'linewidth', 2);
 end
 
 end

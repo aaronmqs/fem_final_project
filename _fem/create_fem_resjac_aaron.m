@@ -18,21 +18,15 @@ function [Ru, dRu] = create_fem_resjac(Uu, femsp)
 %   DRU : Sparse matrix (NDOF-NDBC, NDOF-NDBC) : Finite element Jacobian
 %     restricted to free degrees of freedom
 
-% Create solution vector over all global degrees of freedom (combine UF and
-% DBC_VAL) since entire vector needed for elementwise residual/Jacobian
-% evaluation and subsequent assembly.
+% Extract information from input
 ndof = max(femsp.ldof2gdof(:));
-U = zeros(ndof, 1);
-U(femsp.dbc.dbc_idx) = femsp.dbc.dbc_val;
-U(femsp.dbc.free_idx) = Uu;
 
-% Evaluate assembled residual/Jacobian
-[R, dRu] = eval_assembled_resjac_claw_cg(U, femsp.transf_data, femsp.elem, ...
-                                        femsp.elem_data, femsp.ldof2gdof, ...
-                                        femsp.spmat);
-
-% Restrict residual/Jacobian to free degrees of freedom
-Ru = R(femsp.dbc.free_idx);
-dRu = dRu(femsp.dbc.free_idx, femsp.dbc.free_idx);
-
+% Code me!
+dbc = femsp.dbc;
+U(dbc.dbc_idx, 1) = dbc.dbc_val;
+U(dbc.free_idx, 1) = Uu;
+[R, dR] = eval_assembled_resjac_claw_cg(U, femsp.transf_data, femsp.elem, femsp.elem_data, ...
+                                                 femsp.ldof2gdof, femsp.spmat);
+Ru = R(dbc.free_idx, 1);
+dRu = dR(dbc.free_idx, dbc.free_idx);
 end

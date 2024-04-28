@@ -24,14 +24,23 @@ xcg = msh.xcg; e2vcg = msh.e2vcg; e2bnd = msh.e2bnd;
 
 % Setup equation parameters and natural boundary conditions
 prob.eqn = LinearEllipticScalar(ndim);
-prob.vol_pars_fcn = % TODO
-prob.bnd_pars_fcn = % TODO
+% prob.vol_pars_fcn = % TODO
+prob.vol_pars_fcn = @(x) [10; 0; 0; 0; 1; 0; 0; 0; 100; 1];
+% prob.bnd_pars_fcn = % TODO
+prob.bnd_pars_fcn = @(x, bnd)  -(x(1) + x(2) + x(3)) * ismember(bnd, 1:5);
 
 % Extract indices and set values of dirichlet boundary conditions
 [~, f2v, ~] = create_nodes_bndy_refdom_hcube(ndim, porder);
 
-dbc_idx = % TODO
-dbc_val = % TODO
+% dbc_idx = % TODO
+ndof_per_node = nvar;
+ldof2gdof = create_ldof2gdof_cg(ndof_per_node, e2vcg);
+ldof = 1;
+dbc_idx1 = get_gdof_from_bndtag(ldof, 3, ndof_per_node, ldof2gdof, e2bnd, f2v);
+dbc_idx2 = get_gdof_from_bndtag(ldof, 6, ndof_per_node, ldof2gdof, e2bnd, f2v);
+dbc_idx = get_gdof_from_bndtag(ldof, [3 6], ndof_per_node, ldof2gdof, e2bnd, f2v);
+% dbc_val = % TODO
+dbc_val = [zeros(size(dbc_idx1)); sin(2 * pi * xcg(1, dbc_idx2))' .* cos(2 * pi * xcg(2, dbc_idx2))'];
 dbc = create_dbc_strct(size(xcg, 2)*nvar, dbc_idx, dbc_val);
 
 % Create finite element space

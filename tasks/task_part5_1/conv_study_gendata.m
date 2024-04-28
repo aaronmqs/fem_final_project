@@ -33,6 +33,7 @@ legend("p1", "p2", "p3")
 %% Hypercube
 figure
 etype = 'hcube';
+fprintf(etype)
 Eh = zeros(kmax, pmax); hh = Eh; ocr = zeros(pmax, 1);
 for porder = 1:pmax
     for k = 1:kmax
