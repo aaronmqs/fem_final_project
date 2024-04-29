@@ -52,7 +52,7 @@ dFdU = zeros(neqn, ndim, nvar);
 dFdQ = zeros(neqn, ndim, nvar, ndim);
 
 % Code me!
-S(:, :) = [0 -1]';
+S(:, :) = f;
 F(:, :) = - lam * trace(Q) * eye(ndim) - mu * (Q + Q');
 for i = 1:neqn
     for j = 1:ndim
