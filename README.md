@@ -52,7 +52,7 @@ The notation used in the code follows what's described in the [Project](https://
   - [x] 3
   - [x] 4
 - [ ] Part 6
-  - [ ] 1
+  - [x] 1
   - [ ] 2
 - [ ] Part 7 
   - [ ] 1
