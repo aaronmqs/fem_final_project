@@ -2,11 +2,6 @@
 Repository with all shared codes for the final project of Finite Element Methods.
 The notation used in the code follows what's described in the [Project](https://github.com/aaronmqs/fem_final_project/blob/main/project.pdf) and in the [notation](https://github.com/aaronmqs/fem_final_project/blob/main/notation.m).
 
-# Questions:
-
-- [ ] Part 4.6: why is the optimal convergence rate for poder = 2 so high? Is it because there's a 2nd degree polynomial as part of the exact solution?
-- [ ] Part 5.3: Is [~, f2v, ~] = create_nodes_bndy_refdom_simp(ndim, porder); the same as msh.lfcnsp.f2v? (Same thing on Part 5.4)
-
 # What was done so far:
 
 - [x] Part 1
@@ -93,3 +88,10 @@ The notation used in the code follows what's described in the [Project](https://
 
       -- The same function that creates hypercube element meshes also creates the simplicial meshes.
       
+- [x] Part 4.6: why is the optimal convergence rate for poder = 2 so high? Is it because there's a 2nd degree polynomial as part of the exact solution?
+
+      -- It's ok to have an optimal convergence rate higher than expected. My ituition is that the solution is composed by a quadratic polynomial, and therefore p=2 is kind of good in this case.
+
+- [x] Part 5.3: Is [~, f2v, ~] = create_nodes_bndy_refdom_simp(ndim, porder); the same as msh.lfcnsp.f2v? (Same thing on Part 5.4)
+
+      -- Yeah, they're exactly the same.
