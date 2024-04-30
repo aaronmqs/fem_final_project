@@ -33,16 +33,22 @@ nnode = size(xcg, 2); f2v = msh.lfcnsp.f2v;
 
 % Setup equation parameters and natural boundary conditions
 prob.eqn = LinearElasticity(ndim);
-prob.vol_pars_fcn = % TODO
-prob.bnd_pars_fcn = % TODO
+% prob.vol_pars_fcn = % TODO
+prob.vol_pars_fcn = @(x) [0.73; 0.376; 0; 0; -0.2];
+% prob.bnd_pars_fcn = % TODO
+prob.bnd_pars_fcn = @(x, bnd) [0; 0; 0] * (bnd == 3) + [x(1); x(2); 0] * (bnd == 1);
 
 % Create finite element space
 femsp = create_femsp_cg(prob, msh, porder, e2vcg);
 ldof2gdof = femsp.ldof2gdof;
 
 % Extract indices and set values of dirichlet boundary conditions
-dbc_idx = % TODO
-dbc_val = % TODO
+% dbc_idx = % TODO
+ndof_per_node = prob.eqn.nvar;
+ldof = 1:3; bndtag = 2;
+dbc_idx = get_gdof_from_bndtag(ldof, bndtag, ndof_per_node, ldof2gdof, e2bnd, f2v);
+% dbc_val = % TODO
+dbc_val = zeros(size(dbc_idx));
 dbc = create_dbc_strct(max(ldof2gdof(:)), dbc_idx, dbc_val);
 femsp.dbc = dbc;
 
@@ -57,7 +63,8 @@ if pltit
     visualize_fem3d([], msh_def, uabs, struct('plot_elem', true), 1:4); colorbar;
     
     % Evaluate FEM solution throughout domain
-    xeval = % TODO
+%     xeval = % TODO
+    xeval = [1.5 * ones(1, 100); zeros(1, 100) ;linspace(0, 10)];
     Ux = eval_fem_soln(U(ldof2gdof), xeval, msh, femsp.elem);
 
     figure;

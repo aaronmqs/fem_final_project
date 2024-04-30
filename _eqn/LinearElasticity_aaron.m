@@ -35,29 +35,33 @@ function [S, dSdU, dSdQ, F, dFdU, dFdQ] = eval_linelast_srcflux(U, Q, pars)
 ndim = size(Q, 1);
 
 % Define information regarding size of the system
-neqn = ndim; ncomp = ndim;
+neqn = ndim; nvar = ndim;
 
 % Extract parameters
 lam = pars(1);
 mu = pars(2);
 f = pars(3:3+ndim-1);
 
-% Define source/flux function
-F = -lam*trace(Q)*eye(ndim) - mu*(Q+Q');
-S = f;
+% Preallocate
+S = zeros(neqn, 1);
+dSdU = zeros(neqn, nvar);
+dSdQ = zeros(neqn, nvar, ndim);
 
-% Define source/flux function partial derivatives
-dSFdUQ = zeros(neqn, ndim+1, ncomp, ndim+1);
-for i=1:ndim
-    for j=1:ndim
-        dSFdUQ(i, 1+i, j, 1+j) = dSFdUQ(i, 1+i, j, 1+j) - lam;
-        dSFdUQ(i, 1+j, i, 1+j) = dSFdUQ(i, 1+j, i, 1+j) - mu;
-        dSFdUQ(i, 1+j, j, 1+i) = dSFdUQ(i, 1+j, j, 1+i) - mu;
+F = zeros(neqn, ndim);
+dFdU = zeros(neqn, ndim, nvar);
+dFdQ = zeros(neqn, ndim, nvar, ndim);
+
+% Code me!
+S(:, :) = f;
+F(:, :) = - lam * trace(Q) * eye(ndim) - mu * (Q + Q');
+for i = 1:neqn
+    for j = 1:ndim
+        for l = 1:nvar
+            for r = 1:ndim
+                dFdQ(i, j, l, r) = - lam * (l == r) * (i == j) - mu * ((i == l) * (j == r) + (j == l) * (i == r));
+            end
+        end
     end
 end
-dSdU = dSFdUQ(:, 1, :, 1);
-dSdQ = squeeze(dSFdUQ(:, 1, :, 2:end));
-dFdU = dSFdUQ(:, 2:end, :, 1);
-dFdQ = squeeze(dSFdUQ(:, 2:end, :, 2:end));
 
 end
