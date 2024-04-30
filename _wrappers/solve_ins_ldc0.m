@@ -35,8 +35,10 @@ nnode = size(xcg, 2);
 
 % Setup equation parameters and natural boundary conditions
 prob.eqn = IncompressibleNavierStokes(ndim);
-prob.vol_pars_fcn = % TODO
-prob.bnd_pars_fcn = % TODO
+% prob.vol_pars_fcn = % TODO
+prob.vol_pars_fcn = @(x) [rho; nu]; 
+% prob.bnd_pars_fcn = % TODO
+prob.bnd_pars_fcn = @(x, bnd) [0; 0; 0];
 
 % Create finite element space
 nvar1 = ndim; nvar2 = 1;
@@ -46,8 +48,13 @@ ldof2gdof = femsp.ldof2gdof;
 
 % Extract indices and set values of dirichlet boundary conditions
 ndofU = ndim*nnode;
-dbc_idx = % TODO
-dbc_val = % TODO
+% dbc_idx = % TODO
+dbc_idx123 = get_gdof_from_bndtag(1:2, 1:3, nvar1, ldof2gdof(1:12, :), msh.e2bnd, msh.lfcnsp.f2v);
+dbc_idx4 = get_gdof_from_bndtag(1:2, 4, nvar1, ldof2gdof(1:12, :), msh.e2bnd, msh.lfcnsp.f2v);
+dbc_idxP = ndofU + 1;
+dbc_idx = [dbc_idx123; dbc_idx4; dbc_idxP];
+% dbc_val = % TODO
+dbc_val = [zeros(size(dbc_idx123)); repmat([1; 0], length(dbc_idx4) / 2, 1); zeros(size(dbc_idxP))];
 
 [dbc_idx, I, ~] = unique(dbc_idx);
 dbc_val = dbc_val(I);

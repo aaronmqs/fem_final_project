@@ -34,8 +34,10 @@ f2v = msh.lfcnsp.f2v;
 
 % Setup equation parameters and natural boundary conditions
 prob.eqn = IncompressibleNavierStokes(ndim);
-prob.vol_pars_fcn = % TODO
-prob.bnd_pars_fcn = % TODO
+% prob.vol_pars_fcn = % TODO
+prob.vol_pars_fcn = @(x) [rho; nu];
+% prob.bnd_pars_fcn = % TODO
+prob.bnd_pars_fcn = @(x, bnd) [0; 0; 0] * (bnd == 2);
 
 % Create finite element space
 nvar1 = ndim; nvar2 = 1;
@@ -48,8 +50,12 @@ nv1 = size(e2vcg, 1);
 ndofU = ndim*size(xcg, 2);
 ldof2gdof1 = ldof2gdof(1:ndim*nv1, :);
 
-dbc_idx = % TODO
-dbc_val = % TODO
+% dbc_idx = % TODO
+dbc_idx1 = get_gdof_from_bndtag(1:2, 1, nvar1, ldof2gdof(1:12, :), e2bnd, f2v);
+dbc_idx3 = get_gdof_from_bndtag(1:2, 3, nvar1, ldof2gdof(1:12, :), e2bnd, f2v);
+dbc_idx = [dbc_idx1; dbc_idx3];
+% dbc_val = % TODO
+dbc_val = [repmat([0; 1], length(dbc_idx1) / 2, 1); zeros(size(dbc_idx3))];
 
 [dbc_idx, I, ~] = unique(dbc_idx);
 dbc_val = dbc_val(I);
@@ -91,7 +97,7 @@ if pltit
     visualize_fem([], msh, uabs(e2vcg), struct('plot_elem', false, 'nref', 2));
     quiver(xy(1, :), xy(2, :), uv_xy(1, :), uv_xy(2, :), 'Color', 'k');
     set(gca, 'clim', [0, max(abs(uabs(:)))]);
-    print_axes_pubqual(gca, 'nd0_ins');
+%     print_axes_pubqual(gca, 'nd0_ins');
     title('FEM, velocity magnitude'); colorbar;
     
     % Plot lines

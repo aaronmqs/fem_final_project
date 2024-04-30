@@ -36,7 +36,7 @@ u = U; q = Q;
 ndim = size(u, 1)-1;
 
 % Define information regarding size of the system
-neqn = ndim+1; ncomp = ndim+1;
+neqn = ndim+1; nvar = ndim+1;
 
 % Extract parameters, primary variables, and gradient
 rho = pars(1);
@@ -44,26 +44,41 @@ nu = pars(2);
 v = u(1:ndim); p = u(end);
 dv = q(1:ndim, :);
 
-% Define flux/source functions
-S = [-rho*(dv*v); -trace(dv)];
-F = [-rho*nu*dv + p*eye(ndim); zeros(1, ndim)];
+% Preallocate
+S = zeros(neqn, 1);
+dSdU = zeros(neqn, nvar);
+dSdQ = zeros(neqn, nvar, ndim);
 
-% Define flux/source partial derivatives
-dSFdUQ = zeros(neqn, ndim+1, ncomp, ndim+1);
-dSFdUQ(:, 1, :, 1) = [-rho*dv, zeros(ndim, 1); zeros(1, ndim+1)]; % dSdu
+F = zeros(neqn, ndim);
+dFdU = zeros(neqn, ndim, nvar);
+dFdQ = zeros(neqn, ndim, nvar, ndim);
+
+% Code me!
+S(:, :) = [- rho * dv * v; - trace(dv)];
+F(1:ndim, :) = - rho * nu * dv + p * eye(ndim);
+dFdU(1:ndim, 1:ndim, nvar) = eye(ndim);
+dSdU(1:ndim, :) = [- rho * dv, zeros(ndim, 1)];
+
 for i = 1:ndim
-    dSFdUQ(i, 1, i, 2:end) = -rho*v; % dSdq
-end
-dSFdUQ(end, 1, 1:end-1, 2:end) = reshape(-eye(ndim), [1, ndim, ndim]); % dSdq
-dSFdUQ(1:end-1, 2:end, end, 1) = eye(ndim); % dFdu
-for i=1:ndim
-    for j=1:ndim
-        dSFdUQ(i, 1+j, i, 1+j) = dSFdUQ(i, 1+j, i, 1+j) - rho*nu; % dFdq
+    for k = 1:ndim
+        for r = 1:ndim
+            dSdQ(i, k, r) = - rho * v(r) * (i == k);
+            for j = 1:ndim
+                dFdQ(i, j, k, r) = - rho * nu * (k == i) * (r == j);
+            end
+        end
     end
 end
-dSdU = dSFdUQ(:, 1, :, 1);
-dSdQ = squeeze(dSFdUQ(:, 1, :, 2:end));
-dFdU = dSFdUQ(:, 2:end, :, 1);
-dFdQ = squeeze(dSFdUQ(:, 2:end, :, 2:end));
+dSdQ(neqn, 1:ndim, :) = - eye(ndim);
 
 end
+
+
+
+
+
+
+
+
+
+

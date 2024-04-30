@@ -23,17 +23,18 @@ ndim = size(Qv1, 2)-1;
 [~, ~, nqf, nf] = size(Qvf1);
 [nv2, ~] = size(Qv2);
 
-% Element basis
-% Code me!
-for i = 1:nv
-    dof1 = (i - 1) * nv1 + 1: i * nv1;
-    dof2 = (i - 1) * nv2 + 1: i * nv2;
-    for k = 1:ndim + 1
-        Tv(dof1, :, k, :) = pagemtimes(Qv1(i, k, :), [eye(nv1) zeros(nv1, nv2)]);
-        Tvf(dof1, :, k, :, :) = pagemtimes(Qvf1(i, k, :, :), [eye(nv1) zeros(nv1, nv2)]);
-        Tv(dof2, :, k, :) = pagemtimes(Qv2(i, k, :), [zeros(nv2, nv1) eye(nv2)]);
-        Tvf(dof2, :, k, :, :) = pagemtimes(Qvf2(i, k, :, :), [zeros(nv2, nv1) eye(nv2)]);
-    end
+% Solution basis
+nc = nvar1+nvar2;
+ndof_per_elem = nv1*nvar1+nv2*nvar2;
+Tv = zeros(ndof_per_elem, nc, ndim+1, nq);
+Tvf = zeros(ndof_per_elem, nc, ndim+1, nqf, nf);
+for k = 1:nvar1
+    Tv(k:nvar1:nv1*nvar1, k, :, :) = Qv1;
+    Tvf(k:nvar1:nv1*nvar1, k, :, :, :) = Qvf1;
+end
+for k = 1:nvar2
+    Tv(nv1*nvar1+k:nvar2:end, nvar1+k, :, :) = Qv2;
+    Tvf(nv1*nvar1+k:nvar2:end, nvar1+k, :, :, :) = Qvf2;
 end
 
 end
