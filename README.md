@@ -57,10 +57,10 @@ The notation used in the code follows what's described in the [Project](https://
   - [x] 4
 - [ ] Part 6
   - [x] 1
-  - [ ] 2
-- [ ] Part 7 
-  - [ ] 1
-  - [ ] 2 [DUE TO 05/01]
+  - [x] 2
+- [x] Part 7 
+  - [x] 1
+  - [x] 2 [DUE TO 05/01]
 
 # Answered questions
 
