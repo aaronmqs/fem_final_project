@@ -34,9 +34,9 @@ nnode = size(xcg, 2); f2v = msh.lfcnsp.f2v;
 % Setup equation parameters and natural boundary conditions
 prob.eqn = LinearElasticity(ndim);
 % prob.vol_pars_fcn = % TODO
-prob.vol_pars_fcn = @(x) [0.73; 0.376; 0; 0; -0.2];
+prob.vol_pars_fcn = @(x) [0.73; 0.376; 0; 0; 0];
 % prob.bnd_pars_fcn = % TODO
-prob.bnd_pars_fcn = @(x, bnd) [0; 0; 0] * (bnd == 3) + [x(1); x(2); 0] * (bnd == 1);
+prob.bnd_pars_fcn = @(x, bnd) [0; 0; 0] * (bnd == 3) + [x(1); x(2); 0] * (bnd == 1) + [0;0;0.25] * (bnd == 4);
 
 % Create finite element space
 femsp = create_femsp_cg(prob, msh, porder, e2vcg);

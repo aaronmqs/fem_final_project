@@ -45,18 +45,26 @@ while true
     porder = porder+1;
 end
 
-% Evaluate Vandermone matrix of appropriate order at element nodes and
-% evaluation points
-[Vh, ~] = eval_vander_simp(porder, xk);
-[Vt, dVt] = eval_vander_simp(porder, x);
+% Code me!
+Vhat = eval_vander_simp(porder, xk);
+[Vtilde, Wtilde] = eval_vander_simp(porder, x);
+Q(:, 1, :) = Vhat' \ Vtilde';
 
-% Form interpolation functions evaluated at points
-Q = zeros(nv, ndim+1, nx);
-Q(:, 1, :) = Vh'\Vt';
-
-% Form derivatives of interpolation functions evaluated at points
 for j = 1:ndim
-    Q(:, 1+j, :) = Vh'\dVt(:, :, j)';
+    Q(:, 1 + j, :) = Vhat' \ Wtilde(:, :, j)';
 end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

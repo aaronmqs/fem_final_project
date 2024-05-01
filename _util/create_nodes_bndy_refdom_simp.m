@@ -19,61 +19,54 @@ end
 % Extract information from input
 nf = ndim+1;
 
-% Code me!
-nv = nchoosek(ndim + porder, ndim); % number of nodes per element
-nvf = nchoosek(ndim + porder - 1, ndim - 1); % number of nodes per face
+% Create nodal distribution for simplex
+zk = tensprod_vector_from_onedim_unif(linspace(0, 1, porder+1), ndim);
+zk = zk(:, sum(zk, 1)<=1.0);
+if porder == 0, zk = [0.5; 0.5]; end
 
-% Normal vectors
-N = -eye(ndim);
-N(:, nf) = ones(ndim, 1) / sqrt(ndim);
-
-% Positions of the element nodes
-if porder ~= 0
-    v = linspace(0, 1, porder + 1); v = v(:); a = cell(1, ndim);
-    [a{:}] = ndgrid(1:length(v)); zk = zeros(length(v)^ndim , ndim);
-    for i = 1:ndim
-        zk(:, i) = v(a{i}, :);
-    end
-    zk = zk';
-    idx = sum(zk, 1) <= 1;
-    zk = zk(:, idx); 
-else
-    zk = zeros(ndim, 1); f2v = [ones(1, ndim), NaN];
-    return
+% Create a helper matrix as a tensor product of 1:porder+1 that will assist
+% in extract face information for the faces of the unit simplex that
+% parallel faces of the regular hcube
+shp = (porder+1)*ones(1, ndim);
+M = nan(shp);
+cnt = 0;
+nv_dm1 = 0;
+for i=1:numel(M)
+    idx = cell(1, ndim);
+    [idx{:}] = ind2sub(shp, i);
+    idx = cell2mat(idx);
+    if sum(idx-1)>porder, continue; end
+    if sum(idx-1)==porder, nv_dm1=nv_dm1+1; end
+    cnt = cnt + 1;
+    M(i) = cnt;
 end
 
-% Face to vertices
-f2v = zeros(nvf, nf);
+% Create mapping from face to nodes of element, first ndim faces (aligned
+% with coordinate axes, i.e., parallel to faces of regular hcube)
+f2v = zeros(nv_dm1, nf);
 for i = 1:ndim
-    nds = find(zk(i, :) == 0);
-    f2v(:, i) = nds';
-end
-f2v(:, nf) = find(sum(zk, 1) == 1);
-
-% Checks
-if size(zk, 2) ~= nv; error("Number of points of zk is incorrect."); end
-if size(zk, 1) ~= ndim; error("Dimension of zk is incorrect."); end
-
+    idx = cell(1, ndim);
+    [idx{:}] = deal(1:porder+1);
+    
+    idx{i} = 1;
+    nodes = sort(squeeze(M(idx{:})));
+    f2v(:, i) = nodes(~isnan(nodes));
 end
 
+% Create mapping from face to nodes for the inclined face
+cnt=0;
+for i=1:numel(M)
+    idx = cell(1, ndim);
+    [idx{:}] = ind2sub(shp, i);
+    idx = cell2mat(idx);
+    if sum(idx-1)==porder, cnt=cnt+1; f2v(cnt, end) = M(i); end
+end
 
+% Create unit normals for each face
+N = zeros(ndim, nf);
+for i = 1:ndim
+    N(i, i) = -1;
+end
+N(:, end) = 1/sqrt(ndim);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+end

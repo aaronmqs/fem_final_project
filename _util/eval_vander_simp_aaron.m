@@ -23,27 +23,35 @@ function [V, dV] = eval_vander_simp(porder, x)
 % Extract information from input
 [ndim, nx] = size(x);
 
-% Form exponents for entries of Vandermonde matrix
-expnts = tensprod_vector_from_onedim_unif(0:porder, ndim);
-expnts = expnts(:, sum(expnts, 1)<=porder);
-N = size(expnts, 2);
+% Code me!
 
-% Form Vandermonde matrix
-V = zeros(N, nx);
-dV = zeros(N, ndim, nx);
-for k = 1:nx
-    for i = 1:N
-        v = x(:, k).^expnts(:, i);
-        V(i, k) = prod(v);
-        for j = 1:ndim
-            if expnts(j, i) == 0, dV(i, j, k) = 0; continue; end
-            idx = setdiff(1:ndim, j);
-            s = expnts(j, i);
-            dV(i, j, k) = prod(v(idx))*s*x(j, k)^(s-1);
+% Permissible exponents for basis functions
+nv = nchoosek(ndim + porder, ndim);
+p_ = (0:porder)';
+a = cell(1, ndim); [a{:}] = ndgrid(1:porder + 1);
+U0 = zeros(ndim, (porder + 1)^ndim);
+for i = 1:ndim
+    U0(i, :) = p_(a{i}, :)';
+end
+idx = find(sum(U0, 1) > porder);
+Upsilon = U0(:, setdiff(1:size(U0, 2), idx));
+if size(Upsilon, 2) ~= nv; error("Something is wrong."); end
+
+% Vandermonde matrix (and its Jacobian)
+V = ones(nx, nv);
+dV = zeros(nx, nv, ndim);
+for j = 1:nv
+    for s = 1:ndim
+        Usj = Upsilon(s, j);
+        V(:, j) = V(:, j) .* x(s, :)'.^Usj;
+        if Usj ~= 0
+            dV(:, j, s) = Usj * x(s, :) .^ (Usj - 1);
+            one2dim_but_s = setdiff(1:ndim, s);
+            for m = one2dim_but_s
+                dV(:, j, s) = dV(:, j, s) .* (x(m, :).^Upsilon(m, j))';
+            end
         end
     end
 end
-V = V';
-dV = permute(dV, [3, 1, 2]);
 
 end

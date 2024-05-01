@@ -27,10 +27,11 @@ sigf = zeros(nxf, nf);
 Gif = zeros(ndim, ndim, nxf, nf);
 
 % Compute transformation volume terms
+% Code me!
 for k = 1:nx
-    xq(:, k) = xe*Qv(:, 1, k);
-    G = xe*Qv(:, 2:end, k);
-    detG(k) = det(G);
+    xq(:, k) = xe * Qv(:, 1, k);
+    G = xe * Qv(:, 2:end, k);
+    detG(k, 1) = det(G);
     Gi(:, :, k) = inv(G);
 end
 
