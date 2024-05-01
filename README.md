@@ -2,10 +2,6 @@
 Repository with all shared codes for the final project of Finite Element Methods.
 The notation used in the code follows what's described in the [Project](https://github.com/aaronmqs/fem_final_project/blob/main/project.pdf) and in the [notation](https://github.com/aaronmqs/fem_final_project/blob/main/notation.m).
 
-# Questions:
-
-- [ ] Hollow cylinder: the cylinder gets too weird when applying a force.
-
 # What was done so far:
 
 - [x] Part 1
@@ -99,3 +95,7 @@ The notation used in the code follows what's described in the [Project](https://
 - [x] Part 5.3: Is [~, f2v, ~] = create_nodes_bndy_refdom_simp(ndim, porder); the same as msh.lfcnsp.f2v? (Same thing on Part 5.4)
 
       -- Yeah, they're exactly the same.
+      
+- [x] Hollow cylinder: the cylinder gets too weird when applying a force.
+
+      -- It's a boundary condition!
